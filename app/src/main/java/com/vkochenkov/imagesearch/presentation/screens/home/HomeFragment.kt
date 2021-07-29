@@ -1,4 +1,4 @@
-package com.vkochenkov.imagesearch.presentation.ui.home
+package com.vkochenkov.imagesearch.presentation.screens.home
 
 import android.os.Bundle
 import android.view.LayoutInflater

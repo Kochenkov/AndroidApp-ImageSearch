@@ -1,4 +1,4 @@
-package com.vkochenkov.imagesearch.presentation.ui.favourites
+package com.vkochenkov.imagesearch.presentation.screens.favourites
 
 import android.os.Bundle
 import android.view.LayoutInflater

@@ -1,4 +1,4 @@
-package com.vkochenkov.imagesearch.presentation.ui.favourites
+package com.vkochenkov.imagesearch.presentation.screens.favourites
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

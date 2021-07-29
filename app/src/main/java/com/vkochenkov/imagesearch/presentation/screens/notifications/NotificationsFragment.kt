@@ -1,4 +1,4 @@
-package com.vkochenkov.imagesearch.presentation.ui.notifications
+package com.vkochenkov.imagesearch.presentation.screens.notifications
 
 import android.os.Bundle
 import android.view.LayoutInflater

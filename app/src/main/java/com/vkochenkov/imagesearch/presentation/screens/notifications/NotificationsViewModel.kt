@@ -1,4 +1,4 @@
-package com.vkochenkov.imagesearch.presentation.ui.notifications
+package com.vkochenkov.imagesearch.presentation.screens.notifications
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
