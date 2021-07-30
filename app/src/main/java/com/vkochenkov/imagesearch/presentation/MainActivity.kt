@@ -20,9 +20,6 @@ import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
-    @Inject
-    lateinit var apiService: ApiService
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -35,26 +32,5 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-
-
-        //todo test api call
-        App.appComponent.inject(this)
-
-        apiService.getAllImages("22696909-4c17dd920fd77d7daf174e4ac", 1)
-            .subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(
-                object :
-                    SingleObserver<ApiResponse> {
-                    override fun onSubscribe(d: Disposable) {
-
-                    }
-
-                    override fun onSuccess(t: ApiResponse) {
-
-                    }
-
-                    override fun onError(e: Throwable) {
-
-                    }
-                })
     }
 }

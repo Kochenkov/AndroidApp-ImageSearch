@@ -1,4 +1,4 @@
-package com.vkochenkov.imagesearch.presentation.screens.notifications
+package com.vkochenkov.imagesearch.presentation.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.vkochenkov.imagesearch.R
+import com.vkochenkov.imagesearch.presentation.view_model.NotificationsViewModel
 
 class NotificationsFragment : Fragment() {
 
