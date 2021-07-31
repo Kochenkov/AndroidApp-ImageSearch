@@ -28,7 +28,7 @@ class HomeViewModel @Inject constructor(val repository: Repository) : ViewModel(
         }
 
         override fun onSuccess(t: ApiResponse) {
-            _text.postValue(t.hits[0].id.toString())
+            _text.postValue(t.hits[0].previewUrl)
             Log.d("testtt", "onSucc")
         }
 
