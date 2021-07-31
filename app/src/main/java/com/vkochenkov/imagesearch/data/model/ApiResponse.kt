@@ -1,24 +1,24 @@
-package com.vkochenkov.imagesearch.data.api
+package com.vkochenkov.imagesearch.data.model
 
 import com.google.gson.annotations.SerializedName
 
 data class ApiResponse(
     val total: Int,
-    val totalHints: Int,
-    val hints: List<Hint>
+    val totalHits: Int,
+    val hits: List<Hit>
 ) {
-    data class Hint(
+    data class Hit(
         val id: Int,
-        val pageURL: String,
+        @SerializedName("pageURL") val pageUrl: String,
         val type: String,
         val tags: String,
-        val previewURL: String,
+        @SerializedName("previewURL") val previewUrl: String,
         val previewWidth: Int,
         val previewHeight: Int,
-        val webformatURL: String,
+        @SerializedName("webformatURL") val webformatUrl: String,
         val webformatWidth: Int,
         val webformatHeight: Int,
-        val largeImageURL: String,
+        @SerializedName("largeImageURL") val largeImageUrl: String,
         val imageWidth: Int,
         val imageHeight: Int,
         val imageSize: Int,
@@ -29,6 +29,6 @@ data class ApiResponse(
         val comments: Int,
         @SerializedName("user_id") val userId: Long,
         val user: String,
-        val userImageUR: String
+        @SerializedName("userImageURL") val userImageUrl: String
     )
 }

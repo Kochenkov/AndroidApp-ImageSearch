@@ -1,5 +1,6 @@
 package com.vkochenkov.imagesearch.di.component
 
+import com.vkochenkov.imagesearch.data.Repository
 import com.vkochenkov.imagesearch.di.module.AppModule
 import com.vkochenkov.imagesearch.di.module.NetworkModule
 import com.vkochenkov.imagesearch.presentation.MainActivity
@@ -16,5 +17,5 @@ interface AppComponent {
     fun inject(activity: MainActivity)
     fun inject(fragment: HomeFragment)
     fun inject(fragment: FavouritesFragment)
-
+    fun inject(repository: Repository)
 }

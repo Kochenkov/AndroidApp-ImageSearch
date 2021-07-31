@@ -10,14 +10,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.vkochenkov.imagesearch.App
 import com.vkochenkov.imagesearch.R
-import com.vkochenkov.imagesearch.data.api.ApiResponse
-import com.vkochenkov.imagesearch.data.api.ApiService
 import com.vkochenkov.imagesearch.presentation.view_model.HomeViewModel
 import com.vkochenkov.imagesearch.presentation.view_model.ViewModelFactory
-import io.reactivex.SingleObserver
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.Disposable
-import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class HomeFragment : Fragment() {
@@ -37,6 +31,9 @@ class HomeFragment : Fragment() {
 
         App.appComponent.inject(this)
 
+        homeViewModel.onCreateView()
+
+        //todo
         val root = inflater.inflate(R.layout.fragment_home, container, false)
         val textView: TextView = root.findViewById(R.id.text_home)
         homeViewModel.text.observe(viewLifecycleOwner, Observer {
@@ -44,29 +41,4 @@ class HomeFragment : Fragment() {
         })
         return root
     }
-
-//    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-//        super.onViewCreated(view, savedInstanceState)
-//        //todo test api call
-//        App.appComponent.inject(this)
-//
-//        apiService.getAllImages("22696909-4c17dd920fd77d7daf174e4ac", 1)
-//            .subscribeOn(Schedulers.io())
-//            .observeOn(AndroidSchedulers.mainThread())
-//            .subscribe(
-//                object :
-//                    SingleObserver<ApiResponse> {
-//                    override fun onSubscribe(d: Disposable) {
-//
-//                    }
-//
-//                    override fun onSuccess(t: ApiResponse) {
-//
-//                    }
-//
-//                    override fun onError(e: Throwable) {
-//
-//                    }
-//                })
-//    }
 }

@@ -8,15 +8,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.vkochenkov.imagesearch.App
 import com.vkochenkov.imagesearch.R
-import com.vkochenkov.imagesearch.data.api.ApiResponse
-import com.vkochenkov.imagesearch.data.api.ApiService
-import io.reactivex.SingleObserver
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.Disposable
-import io.reactivex.schedulers.Schedulers
-import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
