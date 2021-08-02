@@ -6,34 +6,41 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.vkochenkov.imagesearch.data.Repository
 import com.vkochenkov.imagesearch.data.model.ApiResponse
+import com.vkochenkov.imagesearch.data.model.ImageItem
+import com.vkochenkov.imagesearch.data.model.NetworkState
+import com.vkochenkov.imagesearch.data.utils.Mapper
 import io.reactivex.SingleObserver
 import io.reactivex.disposables.Disposable
 import javax.inject.Inject
 
 class HomeViewModel @Inject constructor(val repository: Repository) : ViewModel() {
 
-    //todo
-    private val _text = MutableLiveData<String>()
-    val text: LiveData<String> = _text
+    // private val _text = MutableLiveData<String>()
+    // val text: LiveData<String> = _text
+
+    private val _networkState = MutableLiveData<NetworkState>()
+    val networkState: LiveData<NetworkState> = _networkState
+
+    private val _itemsList = MutableLiveData<List<ImageItem>>()
+    val itemsList: LiveData<List<ImageItem>> = _itemsList
 
     fun onCreateView() {
-        repository.getAllImagesFromApi(singleObserver())
-        Log.d("testtt", "onCrView")
-
+        repository.getImagesFromApi(singleRxObserver(), 1)
     }
 
-    fun singleObserver() = object : SingleObserver<ApiResponse> {
+    private fun singleRxObserver() = object : SingleObserver<ApiResponse> {
         override fun onSubscribe(d: Disposable) {
-            Log.d("testtt", "onSub")
+            _networkState.postValue(NetworkState.LOADING)
         }
 
-        override fun onSuccess(t: ApiResponse) {
-            _text.postValue(t.hits[0].previewUrl)
-            Log.d("testtt", "onSucc")
+        override fun onSuccess(r: ApiResponse) {
+            _networkState.postValue(NetworkState.SUCCESS)
+            _itemsList.postValue(Mapper.map(r))
         }
 
         override fun onError(e: Throwable) {
-            Log.d("testtt", "onError")
+            _networkState.postValue(NetworkState.ERROR)
+            Log.d("Load data error: ", e.message.toString())
         }
     }
 }

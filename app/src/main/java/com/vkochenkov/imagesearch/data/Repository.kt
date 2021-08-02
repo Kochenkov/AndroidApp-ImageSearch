@@ -11,8 +11,8 @@ import javax.inject.Inject
 
 class Repository @Inject constructor(private val apiService: ApiService) {
 
-    fun getAllImagesFromApi(singleObserver: SingleObserver<ApiResponse>) {
-        apiService.getAllImages(API_KEY, 1)
+    fun getImagesFromApi(singleObserver: SingleObserver<ApiResponse>, page: Int) {
+        apiService.getAllImages(API_KEY, page)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(singleObserver)
