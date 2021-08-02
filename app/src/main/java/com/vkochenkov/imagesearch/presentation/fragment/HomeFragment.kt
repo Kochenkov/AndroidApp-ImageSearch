@@ -90,6 +90,7 @@ class HomeFragment : Fragment() {
             imagesRecyclerView.layoutManager = GridLayoutManager(view.context, 2)
         }
         imagesRecyclerView.adapter = ImagesAdapter()
+
 //                object :
 //                    FavouriteFilmsAdapter.FavouriteFilmItemClickListener {
 //                    override fun detailsClickListener(film: Film) {

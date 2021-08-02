@@ -18,8 +18,7 @@ class ImageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)  {
         //todo good placeholders
         val options: RequestOptions = RequestOptions()
             .centerCrop()
-            .placeholder(R.mipmap.ic_launcher_round)
-            .error(R.mipmap.ic_launcher_round)
+            .placeholder(R.drawable.ic_baseline_image_24)
             .diskCacheStrategy(DiskCacheStrategy.ALL)
 
         Glide.with(itemView.context.applicationContext)
