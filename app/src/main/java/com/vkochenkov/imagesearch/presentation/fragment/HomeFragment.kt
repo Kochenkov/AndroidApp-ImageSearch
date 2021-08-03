@@ -63,7 +63,8 @@ class HomeFragment : Fragment() {
     }
 
     private fun initLiveDataObservers() {
-        homeViewModel.networkState.observe(viewLifecycleOwner, Observer { it ->
+        homeViewModel.networkState.observe(viewLifecycleOwner, Observer {
+            emptyListTv.visibility = View.VISIBLE
             when (it) {
                 NetworkState.LOADING -> {
                     progressBar.visibility = View.VISIBLE
@@ -71,21 +72,11 @@ class HomeFragment : Fragment() {
                 }
                 NetworkState.LOADING_ERROR -> {
                     progressBar.visibility = View.INVISIBLE
-                    Toast.makeText(
-                        activity,
-                        activity?.applicationContext?.getText(R.string.load_network_error_text),
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    //todo проверить наличие элементов в списке
+                    showErrorNetworkToast(R.string.load_network_error_text)
                 }
                 NetworkState.NO_INTERNET_CONNECTION -> {
                     progressBar.visibility = View.INVISIBLE
-                    Toast.makeText(
-                        activity,
-                        activity?.applicationContext?.getText(R.string.no_network_error_text),
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    //todo проверить наличие элементов в списке
+                    showErrorNetworkToast(R.string.no_network_error_text)
                 }
                 NetworkState.SUCCESS -> {
                     progressBar.visibility = View.INVISIBLE
@@ -95,7 +86,20 @@ class HomeFragment : Fragment() {
         homeViewModel.itemsList.observe(viewLifecycleOwner, Observer {
             (imagesRecyclerView.adapter as ImagesAdapter).setItemsList(it)
             (imagesRecyclerView.adapter as ImagesAdapter).notifyDataSetChanged()
+            checkItemsListSize()
         })
+    }
+
+    private fun showErrorNetworkToast(strId: Int) {
+        Toast.makeText(activity, activity?.applicationContext?.getText(strId), Toast.LENGTH_SHORT).show()
+    }
+
+    private fun checkItemsListSize() {
+        if (homeViewModel.itemsList.value?.size == 0 || homeViewModel.itemsList.value == null) {
+            emptyListTv.visibility = View.VISIBLE
+        } else {
+            emptyListTv.visibility = View.INVISIBLE
+        }
     }
 
     private fun initRecyclerView(view: View) {
