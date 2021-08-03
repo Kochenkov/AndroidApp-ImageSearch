@@ -7,15 +7,15 @@
     tools:context=".presentation.fragment.HomeFragment">
 
     <TextView
-        android:id="@+id/tv_empty_list"
+        android:id="@+id/tv_empty_home"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/main_margin"
-        android:text="@string/empty_list_text"
+        android:text="@string/empty_data_text"
         android:textAlignment="center"
         android:textSize="@dimen/error_text_size"
         android:visibility="visible"
-        tools:text="test test test test test test test test test test test"
+        tools:text="@string/empty_data_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

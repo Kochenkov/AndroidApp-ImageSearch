@@ -13,7 +13,10 @@ import io.reactivex.SingleObserver
 import io.reactivex.disposables.Disposable
 import javax.inject.Inject
 
-class HomeViewModel @Inject constructor(val repository: Repository, val networkChecker: NetworkChecker) : ViewModel() {
+class HomeViewModel @Inject constructor(
+    private val repository: Repository,
+    private val networkChecker: NetworkChecker
+) : ViewModel() {
 
     private val _networkState = MutableLiveData<NetworkState>()
     val networkState: LiveData<NetworkState> = _networkState
@@ -22,7 +25,9 @@ class HomeViewModel @Inject constructor(val repository: Repository, val networkC
     val itemsList: LiveData<List<ImageItem>> = _itemsList
 
     fun onCreateView() {
-        makeApiCall()
+        if (_itemsList.value == null) {
+            makeApiCall()
+        }
     }
 
     private fun singleRxObserver() = object : SingleObserver<ApiResponse> {

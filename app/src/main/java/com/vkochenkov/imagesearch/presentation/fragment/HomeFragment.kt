@@ -37,7 +37,7 @@ class HomeFragment : Fragment() {
     private lateinit var progressBar: ProgressBar
 
     private val homeViewModel: HomeViewModel by lazy {
-        ViewModelProvider(this, viewModelFactory).get(HomeViewModel::class.java)
+        ViewModelProvider(requireActivity() , viewModelFactory).get(HomeViewModel::class.java)
     }
 
     override fun onCreateView(
@@ -50,16 +50,15 @@ class HomeFragment : Fragment() {
         homeViewModel.onCreateView()
 
         val root = inflater.inflate(R.layout.fragment_home, container, false)
-        initFields(root)
+        initViews(root)
         initRecyclerView(root)
         initLiveDataObservers()
         return root
     }
 
-    private fun initFields(view: View) {
-        imagesRecyclerView = view.findViewById(R.id.images_list)
+    private fun initViews(view: View) {
         progressBar = view.findViewById(R.id.progress_home)
-        emptyListTv = view.findViewById(R.id.tv_empty_list)
+        emptyListTv = view.findViewById(R.id.tv_empty_home)
     }
 
     private fun initLiveDataObservers() {
@@ -103,6 +102,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun initRecyclerView(view: View) {
+        imagesRecyclerView = view.findViewById(R.id.images_list)
         if (this.resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
             imagesRecyclerView.layoutManager = GridLayoutManager(view.context, 2)
         } else {

@@ -8,17 +8,19 @@
     tools:context=".presentation.activity.ImageActivity">
 
     <TextView
-        android:id="@+id/tv_error_load"
-        android:layout_width="wrap_content"
+        android:id="@+id/tv_empty_details"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/main_margin"
-        android:textSize="@dimen/error_text_size"
+        android:text="@string/empty_data_text"
         android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="@+id/scrollView2"
+        android:textSize="@dimen/error_text_size"
+        android:visibility="invisible"
+        tools:text="@string/empty_data_text"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="lodlddddddddd lodlddddddddd lodlddddddddd lodlddddddddd lodlddddddddd lodlddddddddd" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ProgressBar
         android:id="@+id/progress_detail"
