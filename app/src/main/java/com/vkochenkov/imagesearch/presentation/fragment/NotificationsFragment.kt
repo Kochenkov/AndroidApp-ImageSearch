@@ -9,24 +9,27 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.vkochenkov.imagesearch.R
+import com.vkochenkov.imagesearch.presentation.view_model.FavouritesViewModel
 import com.vkochenkov.imagesearch.presentation.view_model.NotificationsViewModel
+import com.vkochenkov.imagesearch.presentation.view_model.ViewModelFactory
+import javax.inject.Inject
 
 class NotificationsFragment : Fragment() {
 
-    private lateinit var notificationsViewModel: NotificationsViewModel
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+
+    //todo
+//    private val favouritesViewModel: FavouritesViewModel by lazy {
+//        ViewModelProvider(this, viewModelFactory).get(FavouritesViewModel::class.java)
+//    }
 
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        notificationsViewModel =
-                ViewModelProvider(this).get(NotificationsViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_notifications, container, false)
-        val textView: TextView = root.findViewById(R.id.text_notifications)
-        notificationsViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
-        return root
+        //todo
+        return null
     }
 }
