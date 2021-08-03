@@ -1,5 +1,9 @@
 package com.vkochenkov.imagesearch.data.model
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
 data class ImageItem(
     val id: Int,
     val type: String,
@@ -7,5 +11,5 @@ data class ImageItem(
     val littleImageUrl: String,
     val mediumImageUrl: String,
     val largeImageUrl: String,
-)
+): Parcelable
 

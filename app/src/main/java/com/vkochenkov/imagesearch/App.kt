@@ -10,6 +10,8 @@ class App: Application() {
 
     companion object {
         lateinit var appComponent: AppComponent
+        //constants
+        const val IMAGE_ITEM = "IMAGE_ITEM"
     }
 
     override fun onCreate() {

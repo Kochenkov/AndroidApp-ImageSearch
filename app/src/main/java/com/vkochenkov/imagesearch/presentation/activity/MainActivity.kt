@@ -1,4 +1,4 @@
-package com.vkochenkov.imagesearch.presentation
+package com.vkochenkov.imagesearch.presentation.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

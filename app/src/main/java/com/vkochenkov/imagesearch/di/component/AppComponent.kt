@@ -3,7 +3,7 @@ package com.vkochenkov.imagesearch.di.component
 import com.vkochenkov.imagesearch.data.Repository
 import com.vkochenkov.imagesearch.di.module.AppModule
 import com.vkochenkov.imagesearch.di.module.NetworkModule
-import com.vkochenkov.imagesearch.presentation.MainActivity
+import com.vkochenkov.imagesearch.presentation.activity.MainActivity
 import com.vkochenkov.imagesearch.presentation.fragment.FavouritesFragment
 import com.vkochenkov.imagesearch.presentation.fragment.HomeFragment
 

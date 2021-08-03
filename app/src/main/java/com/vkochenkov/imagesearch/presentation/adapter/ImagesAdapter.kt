@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.vkochenkov.imagesearch.R
 import com.vkochenkov.imagesearch.data.model.ImageItem
 
-class ImagesAdapter: RecyclerView.Adapter<ImageViewHolder>() {
+class ImagesAdapter(val itemClickListener: ItemClickListener): RecyclerView.Adapter<ImageViewHolder>() {
 
     private var itemsList: List<ImageItem> = ArrayList()
 
@@ -18,8 +18,7 @@ class ImagesAdapter: RecyclerView.Adapter<ImageViewHolder>() {
     override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
         val imageItem = itemsList[position]
         holder.bind(imageItem)
-        //todo
-        //setOnClickListenerForDetailsBtn(holder, item)
+        holder.itemView.setOnClickListener { itemClickListener.onItemCLick(holder, imageItem) }
     }
 
     override fun getItemCount(): Int {
