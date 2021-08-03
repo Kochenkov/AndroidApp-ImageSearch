@@ -10,20 +10,19 @@ import com.vkochenkov.imagesearch.R
 import com.vkochenkov.imagesearch.data.model.ImageItem
 
 
-class ImageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)  {
-    val imageView: ImageView = itemView.findViewById(R.id.iv_item)
+class ImageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    private val imageView: ImageView = itemView.findViewById(R.id.iv_item)
+
+    //todo good placeholders
+    private val glideOptions: RequestOptions = RequestOptions()
+        .centerCrop()
+        .placeholder(R.drawable.ic_baseline_image_24)
+        .diskCacheStrategy(DiskCacheStrategy.ALL)
 
     fun bind(item: ImageItem) {
-
-        //todo good placeholders
-        val options: RequestOptions = RequestOptions()
-            .centerCrop()
-            .placeholder(R.drawable.ic_baseline_image_24)
-            .diskCacheStrategy(DiskCacheStrategy.ALL)
-
         Glide.with(itemView.context.applicationContext)
             .load(item.mediumImageUrl)
-            .apply(options)
+            .apply(glideOptions)
             .into(imageView)
     }
 }

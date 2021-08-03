@@ -63,27 +63,38 @@ class HomeFragment : Fragment() {
     }
 
     private fun initLiveDataObservers() {
-        homeViewModel.itemsList.observe(viewLifecycleOwner, Observer {
-            (imagesRecyclerView.adapter as ImagesAdapter).setItemsList(it)
-            (imagesRecyclerView.adapter as ImagesAdapter).notifyDataSetChanged()
-        })
         homeViewModel.networkState.observe(viewLifecycleOwner, Observer { it ->
             when (it) {
                 NetworkState.LOADING -> {
                     progressBar.visibility = View.VISIBLE
+                    emptyListTv.visibility = View.INVISIBLE
                 }
-                NetworkState.ERROR -> {
+                NetworkState.LOADING_ERROR -> {
                     progressBar.visibility = View.INVISIBLE
                     Toast.makeText(
                         activity,
-                        activity?.applicationContext?.getText(R.string.error_network_text),
+                        activity?.applicationContext?.getText(R.string.load_network_error_text),
                         Toast.LENGTH_SHORT
                     ).show()
+                    //todo проверить наличие элементов в списке
+                }
+                NetworkState.NO_INTERNET_CONNECTION -> {
+                    progressBar.visibility = View.INVISIBLE
+                    Toast.makeText(
+                        activity,
+                        activity?.applicationContext?.getText(R.string.no_network_error_text),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    //todo проверить наличие элементов в списке
                 }
                 NetworkState.SUCCESS -> {
                     progressBar.visibility = View.INVISIBLE
                 }
             }
+        })
+        homeViewModel.itemsList.observe(viewLifecycleOwner, Observer {
+            (imagesRecyclerView.adapter as ImagesAdapter).setItemsList(it)
+            (imagesRecyclerView.adapter as ImagesAdapter).notifyDataSetChanged()
         })
     }
 

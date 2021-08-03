@@ -1,6 +1,8 @@
 package com.vkochenkov.imagesearch.di.module
 
+import android.app.Application
 import com.vkochenkov.imagesearch.data.api.ApiService
+import com.vkochenkov.imagesearch.presentation.utils.NetworkChecker
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -39,4 +41,9 @@ class NetworkModule {
             .build()
             .create(ApiService::class.java)
     }
+
+    @Provides
+    @Singleton
+    fun provideNetworkChecker(context: Application) = NetworkChecker(context)
+
 }

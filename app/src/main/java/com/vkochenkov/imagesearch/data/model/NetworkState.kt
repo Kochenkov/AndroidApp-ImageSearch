@@ -1,5 +1,5 @@
 package com.vkochenkov.imagesearch.data.model
 
 enum class NetworkState {
-    LOADING, ERROR, SUCCESS
+    LOADING, LOADING_ERROR, NO_INTERNET_CONNECTION, SUCCESS
 }

@@ -4,5 +4,7 @@
     <string name="title_favourites">Favourites</string>
     <string name="title_notifications">TODO</string>
     <string name="empty_list_text">Oops, we have no data for show you</string>
-    <string name="error_network_text">Something went wrong: can\'t load data from server, try again later</string>
+    <string name="no_network_error_text">No internet connection!</string>
+    <string name="load_network_error_text">Something went wrong: can\'t load data from server, try again later</string>
+
 </resources>
