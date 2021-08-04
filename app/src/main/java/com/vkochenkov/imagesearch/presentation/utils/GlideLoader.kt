@@ -36,6 +36,10 @@ class GlideLoader(
         App.appComponent.inject(this)
     }
 
+    companion object {
+        var bitmapImage: Bitmap? = null
+    }
+
     private val requestOptions: RequestOptions = RequestOptions().centerInside()
         .diskCacheStrategy(DiskCacheStrategy.ALL)
 
@@ -56,6 +60,7 @@ class GlideLoader(
         } else {
             progressBar?.visibility = View.INVISIBLE
             emptyDataTextView.visibility = View.VISIBLE
+            bitmapImage = null
             showErrorNetworkToast(R.string.no_network_error_text)
         }
     }
@@ -80,6 +85,7 @@ class GlideLoader(
         ): Boolean {
             progressBar?.visibility = View.INVISIBLE
             emptyDataTextView.visibility = View.VISIBLE
+            bitmapImage = null
             showErrorNetworkToast(R.string.load_network_error_text)
             return false
         }
@@ -93,9 +99,9 @@ class GlideLoader(
         ): Boolean {
             progressBar?.visibility = View.INVISIBLE
             emptyDataTextView.visibility = View.INVISIBLE
+            bitmapImage = resource
             return false
         }
-
     }
 
     private fun showErrorNetworkToast(strId: Int) {

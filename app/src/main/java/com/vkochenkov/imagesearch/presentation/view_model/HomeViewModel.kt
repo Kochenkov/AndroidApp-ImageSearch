@@ -7,7 +7,7 @@ import com.vkochenkov.imagesearch.data.Repository
 import com.vkochenkov.imagesearch.data.model.ApiResponse
 import com.vkochenkov.imagesearch.data.model.ImageItem
 import com.vkochenkov.imagesearch.data.model.NetworkState
-import com.vkochenkov.imagesearch.data.utils.Mapper
+import com.vkochenkov.imagesearch.data.model.Mapper
 import com.vkochenkov.imagesearch.presentation.utils.NetworkChecker
 import io.reactivex.SingleObserver
 import io.reactivex.disposables.Disposable

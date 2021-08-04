@@ -2,9 +2,13 @@
     <string name="app_name">ImageSearch</string>
     <string name="title_home">Images</string>
     <string name="title_favourites">Favourites</string>
-    <string name="title_notifications">TODO</string>
-    <string name="empty_data_text">Oops, we have no data for show you</string>
-    <string name="no_network_error_text">No internet connection!</string>
-    <string name="load_network_error_text">Something went wrong: can\'t load data from server, try again later</string>
 
+    <string name="title_notifications">TODO</string>
+
+    <string name="empty_data_text">Oops, we have no data for show you</string>
+    <string name="no_network_error_text">No internet connection</string>
+    <string name="load_network_error_text">Something went wrong: can\'t load data from server, try again later</string>
+    <string name="wallpaper_error_str">Something went wrong: can\'t set wallpaper, try again later</string>
+    <string name="wallpaper_success_str">The wallpaper has been successfully changed</string>
+    <string name="wallpaper_loading_str">Start change wallpaper…</string>
 </resources>
