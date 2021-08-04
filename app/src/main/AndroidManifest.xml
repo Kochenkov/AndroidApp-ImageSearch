@@ -17,17 +17,17 @@
         <service
             android:name=".presentation.service.WallpaperService"
             android:exported="false"/>
-
         <activity android:name=".presentation.activity.ImageActivity" />
         <activity
             android:name=".presentation.activity.MainActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <receiver
+            android:name=".presentation.receiver.WallpaperBroadcastReceiver"
+            android:exported="false"/>
     </application>
-
 </manifest>

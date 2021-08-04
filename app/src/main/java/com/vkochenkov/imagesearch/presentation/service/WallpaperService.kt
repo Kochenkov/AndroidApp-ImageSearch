@@ -13,15 +13,21 @@ class WallpaperService : IntentService("WallpaperService") {
         val wallpaperManager = WallpaperManager.getInstance(applicationContext)
 
         try {
-            sendBroadcast(Intent(WallpaperBroadcastReceiver.WALLPAPER_LOADING_STARTED))
+            sendBroadcast(Intent(this, WallpaperBroadcastReceiver::class.java).also {
+                it.action = WallpaperBroadcastReceiver.WALLPAPER_LOADING_STARTED
+            })
             wallpaperManager.setBitmap(GlideLoader.bitmapImage)
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
                 wallpaperManager.setBitmap(GlideLoader.bitmapImage, null, true, WallpaperManager.FLAG_LOCK)
             }
-            sendBroadcast(Intent(WallpaperBroadcastReceiver.WALLPAPER_SUCCESS))
+            sendBroadcast(Intent(this, WallpaperBroadcastReceiver::class.java).also {
+                it.action = WallpaperBroadcastReceiver.WALLPAPER_SUCCESS
+            })
         } catch (e: Exception) {
             e.printStackTrace()
-            sendBroadcast(Intent(WallpaperBroadcastReceiver.WALLPAPER_ERROR))
+            sendBroadcast(Intent(this, WallpaperBroadcastReceiver::class.java).also {
+                it.action = WallpaperBroadcastReceiver.WALLPAPER_ERROR
+            })
         } finally {
             stopSelf()
         }

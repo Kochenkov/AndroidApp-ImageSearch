@@ -1,7 +1,6 @@
 package com.vkochenkov.imagesearch.presentation.activity
 
 import android.content.Intent
-import android.content.IntentFilter
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ProgressBar
@@ -12,7 +11,6 @@ import com.vkochenkov.imagesearch.App.Companion.IMAGE_ITEM
 import com.vkochenkov.imagesearch.R
 import com.vkochenkov.imagesearch.data.model.ImageItem
 import com.vkochenkov.imagesearch.presentation.service.WallpaperService
-import com.vkochenkov.imagesearch.presentation.receiver.WallpaperBroadcastReceiver
 import com.vkochenkov.imagesearch.presentation.utils.GlideLoader
 
 class ImageActivity : AppCompatActivity() {
@@ -24,15 +22,11 @@ class ImageActivity : AppCompatActivity() {
 
     private lateinit var glideLoader: GlideLoader
 
-    private lateinit var wallpaperBroadcastReceiver: WallpaperBroadcastReceiver
-    private lateinit var intentFilter: IntentFilter
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_image)
 
         initViews()
-        initReceiver()
         supportActionBar?.hide()
 
         val item = intent.getParcelableExtra<ImageItem>(IMAGE_ITEM)
@@ -43,16 +37,6 @@ class ImageActivity : AppCompatActivity() {
         glideLoader.loadImage()
 
         setOnClickListeners()
-    }
-
-    override fun onResume() {
-        super.onResume()
-        registerReceiver(wallpaperBroadcastReceiver, intentFilter)
-    }
-
-    override fun onPause() {
-        super.onPause()
-        unregisterReceiver(wallpaperBroadcastReceiver)
     }
 
     private fun setOnClickListeners() {
@@ -67,13 +51,5 @@ class ImageActivity : AppCompatActivity() {
         progressBar = findViewById(R.id.progress_detail)
         emptyDataTv = findViewById(R.id.tv_empty_details)
         button = findViewById(R.id.button)
-    }
-
-    private fun initReceiver() {
-        wallpaperBroadcastReceiver = WallpaperBroadcastReceiver()
-        intentFilter = IntentFilter()
-        intentFilter.addAction(WallpaperBroadcastReceiver.WALLPAPER_ERROR)
-        intentFilter.addAction(WallpaperBroadcastReceiver.WALLPAPER_SUCCESS)
-        intentFilter.addAction(WallpaperBroadcastReceiver.WALLPAPER_LOADING_STARTED)
     }
 }
