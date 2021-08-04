@@ -1,19 +1,18 @@
 package com.vkochenkov.imagesearch.presentation.activity
 
 import android.os.Bundle
-import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
 import com.vkochenkov.imagesearch.App.Companion.IMAGE_ITEM
 import com.vkochenkov.imagesearch.R
 import com.vkochenkov.imagesearch.data.model.ImageItem
 import com.vkochenkov.imagesearch.presentation.utils.GlideLoader
 
-
 class ImageActivity : AppCompatActivity() {
 
-    lateinit var imageView: ImageView
+    lateinit var imageView: SubsamplingScaleImageView
     lateinit var progressBar: ProgressBar
     lateinit var emptyDataTv: TextView
 
