@@ -16,11 +16,11 @@
         android:textAlignment="center"
         android:textSize="@dimen/error_text_size"
         android:visibility="invisible"
-        tools:text="@string/empty_data_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/empty_data_text" />
 
     <ProgressBar
         android:id="@+id/progress_detail"
@@ -43,14 +43,55 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:text="set walpapper"
+    <ImageView
+        android:id="@+id/image_info_btn"
+        android:layout_width="@dimen/icon_size"
+        android:layout_height="@dimen/icon_size"
+        android:layout_margin="@dimen/main_margin"
+        android:background="@drawable/ic_baseline_info_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/image_share_btn"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/image_share_btn"
+        android:layout_width="@dimen/icon_size"
+        android:layout_height="@dimen/icon_size"
+        android:layout_margin="@dimen/main_margin"
+        android:background="@drawable/ic_baseline_share_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/image_like_btn"
+        app:layout_constraintStart_toEndOf="@id/image_info_btn" />
+
+    <ImageView
+        android:id="@+id/image_like_btn"
+        android:layout_width="@dimen/icon_size"
+        android:layout_height="@dimen/icon_size"
+        android:layout_margin="@dimen/main_margin"
+        android:background="@drawable/ic_baseline_favorite_border_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/image_wallpaper_btn"
+        app:layout_constraintStart_toEndOf="@id/image_share_btn" />
+
+    <ImageView
+        android:id="@+id/image_wallpaper_btn"
+        android:layout_width="@dimen/icon_size"
+        android:layout_height="@dimen/icon_size"
+        android:layout_margin="@dimen/main_margin"
+        android:background="@drawable/ic_baseline_wallpaper_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/image_download_btn"
+        app:layout_constraintStart_toEndOf="@id/image_like_btn" />
+
+    <ImageView
+        android:id="@+id/image_download_btn"
+        android:layout_width="@dimen/icon_size"
+        android:layout_height="@dimen/icon_size"
+        android:layout_margin="@dimen/main_margin"
+        android:background="@drawable/ic_baseline_download_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toEndOf="@id/image_wallpaper_btn" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

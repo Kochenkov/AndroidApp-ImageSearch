@@ -23,19 +23,18 @@ class FavouritesFragment : Fragment() {
         ViewModelProvider(this, viewModelFactory).get(FavouritesViewModel::class.java)
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        App.appComponent.inject(this)
+    }
+
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
 
-        App.appComponent.inject(this)
-
-        val root = inflater.inflate(R.layout.fragment_favourites, container, false)
-        val textView: TextView = root.findViewById(R.id.text_dashboard)
-        favouritesViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
-        return root
+        //todo
+        return null
     }
 }

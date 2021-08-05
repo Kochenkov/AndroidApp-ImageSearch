@@ -40,13 +40,17 @@ class ImagesFragment : Fragment() {
         ViewModelProvider(requireActivity() , viewModelFactory).get(ImagesViewModel::class.java)
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        App.appComponent.inject(this)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        App.appComponent.inject(this)
         imagesViewModel.onCreateView()
 
         val root = inflater.inflate(R.layout.fragment_images, container, false)
