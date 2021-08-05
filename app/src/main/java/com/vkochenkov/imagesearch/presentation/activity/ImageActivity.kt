@@ -11,7 +11,7 @@ import com.vkochenkov.imagesearch.App.Companion.IMAGE_ITEM
 import com.vkochenkov.imagesearch.R
 import com.vkochenkov.imagesearch.data.model.ImageItem
 import com.vkochenkov.imagesearch.presentation.service.WallpaperService
-import com.vkochenkov.imagesearch.presentation.utils.GlideLoader
+import com.vkochenkov.imagesearch.presentation.utils.ImageLoader
 
 class ImageActivity : AppCompatActivity() {
 
@@ -20,7 +20,7 @@ class ImageActivity : AppCompatActivity() {
     private lateinit var emptyDataTv: TextView
     private lateinit var button: Button
 
-    private lateinit var glideLoader: GlideLoader
+    private lateinit var imageLoader: ImageLoader
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,9 +32,9 @@ class ImageActivity : AppCompatActivity() {
         val item = intent.getParcelableExtra<ImageItem>(IMAGE_ITEM)
         val url = item?.largeImageUrl.toString()
 
-        glideLoader = GlideLoader(this, url, imageView, emptyDataTv)
-        glideLoader.setProgressBar(progressBar)
-        glideLoader.loadImage()
+        imageLoader = ImageLoader(this, url, imageView, emptyDataTv)
+        imageLoader.setProgressBar(progressBar)
+        imageLoader.loadImage()
 
         setOnClickListeners()
     }

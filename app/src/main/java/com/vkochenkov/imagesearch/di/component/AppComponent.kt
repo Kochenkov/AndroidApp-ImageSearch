@@ -1,12 +1,12 @@
 package com.vkochenkov.imagesearch.di.component
 
 import com.vkochenkov.imagesearch.data.Repository
-import com.vkochenkov.imagesearch.presentation.utils.GlideLoader
+import com.vkochenkov.imagesearch.presentation.utils.ImageLoader
 import com.vkochenkov.imagesearch.di.module.AppModule
 import com.vkochenkov.imagesearch.di.module.NetworkModule
 import com.vkochenkov.imagesearch.presentation.activity.MainActivity
 import com.vkochenkov.imagesearch.presentation.fragment.FavouritesFragment
-import com.vkochenkov.imagesearch.presentation.fragment.HomeFragment
+import com.vkochenkov.imagesearch.presentation.fragment.ImagesFragment
 
 import dagger.Component
 import javax.inject.Singleton
@@ -16,8 +16,8 @@ import javax.inject.Singleton
 interface AppComponent {
 
     fun inject(activity: MainActivity)
-    fun inject(fragment: HomeFragment)
+    fun inject(fragment: ImagesFragment)
     fun inject(fragment: FavouritesFragment)
     fun inject(repository: Repository)
-    fun inject(glideLoader: GlideLoader)
+    fun inject(imageLoader: ImageLoader)
 }

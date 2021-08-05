@@ -11,7 +11,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.vkochenkov.imagesearch.App
 import com.vkochenkov.imagesearch.R
 import com.vkochenkov.imagesearch.presentation.view_model.FavouritesViewModel
-import com.vkochenkov.imagesearch.presentation.view_model.HomeViewModel
 import com.vkochenkov.imagesearch.presentation.view_model.ViewModelFactory
 import javax.inject.Inject
 

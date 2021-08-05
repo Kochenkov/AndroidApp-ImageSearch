@@ -13,7 +13,7 @@ import io.reactivex.SingleObserver
 import io.reactivex.disposables.Disposable
 import javax.inject.Inject
 
-class HomeViewModel @Inject constructor(
+class ImagesViewModel @Inject constructor(
     private val repository: Repository,
     private val networkChecker: NetworkChecker
 ) : ViewModel() {

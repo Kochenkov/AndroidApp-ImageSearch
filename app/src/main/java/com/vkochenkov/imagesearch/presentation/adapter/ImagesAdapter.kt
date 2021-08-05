@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.vkochenkov.imagesearch.R
 import com.vkochenkov.imagesearch.data.model.ImageItem
 
-class ImagesAdapter(val itemClickListener: ItemClickListener): RecyclerView.Adapter<ImageViewHolder>() {
+class ImagesAdapter(private val itemClickListener: ItemClickListener): RecyclerView.Adapter<ImageViewHolder>() {
 
     private var itemsList: List<ImageItem> = ArrayList()
 

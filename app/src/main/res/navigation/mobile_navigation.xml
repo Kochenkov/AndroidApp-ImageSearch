@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/navigation_images">
 
     <fragment
-        android:id="@+id/navigation_home"
-        android:name="com.vkochenkov.imagesearch.presentation.fragment.HomeFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        android:id="@+id/navigation_images"
+        android:name="com.vkochenkov.imagesearch.presentation.fragment.ImagesFragment"
+        android:label="@string/title_images"
+        tools:layout="@layout/fragment_images" />
 
     <fragment
         android:id="@+id/navigation_favourites"
@@ -18,8 +18,8 @@
         tools:layout="@layout/fragment_favourites" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.vkochenkov.imagesearch.presentation.fragment.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_app_info"
+        android:name="com.vkochenkov.imagesearch.presentation.fragment.AppInfoFragment"
+        android:label="@string/title_app_info"
+        tools:layout="@layout/fragment_app_info" />
 </navigation>

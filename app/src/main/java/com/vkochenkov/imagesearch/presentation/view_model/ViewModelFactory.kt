@@ -13,14 +13,14 @@ class ViewModelFactory @Inject constructor(private val repository: Repository,
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         return when {
-            modelClass.isAssignableFrom(HomeViewModel::class.java) -> {
-                HomeViewModel(repository, networkChecker) as T
+            modelClass.isAssignableFrom(ImagesViewModel::class.java) -> {
+                ImagesViewModel(repository, networkChecker) as T
             }
             modelClass.isAssignableFrom(FavouritesViewModel::class.java) -> {
                 FavouritesViewModel(repository) as T
             }
-            modelClass.isAssignableFrom(NotificationsViewModel::class.java) -> {
-                NotificationsViewModel(repository) as T
+            modelClass.isAssignableFrom(AppInfoViewModel::class.java) -> {
+                AppInfoViewModel(repository) as T
             }
             else -> {
                 throw IllegalArgumentException("Unknown ViewModel class")

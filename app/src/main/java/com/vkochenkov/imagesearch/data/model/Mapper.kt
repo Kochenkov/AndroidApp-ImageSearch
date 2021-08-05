@@ -6,7 +6,7 @@ object Mapper {
     fun map(response: ApiResponse): List<ImageItem> {
         val imageItemsList = ArrayList<ImageItem>()
         for (hit in response.hits) {
-            var imageItem = ImageItem(
+            val imageItem = ImageItem(
                 hit.id,
                 hit.type,
                 hit.tags.split(""),

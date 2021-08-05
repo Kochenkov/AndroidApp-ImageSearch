@@ -22,7 +22,7 @@ import com.vkochenkov.imagesearch.App
 import com.vkochenkov.imagesearch.R
 import javax.inject.Inject
 
-class GlideLoader(
+class ImageLoader(
     val context: Context,
     private val imageUrl: String,
     private val imageView: SubsamplingScaleImageView,

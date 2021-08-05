@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.vkochenkov.imagesearch.data.Repository
 import javax.inject.Inject
 
-class NotificationsViewModel @Inject constructor(val repository: Repository) : ViewModel() {
+class AppInfoViewModel @Inject constructor(val repository: Repository) : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
         value = "This is notifications Fragment"

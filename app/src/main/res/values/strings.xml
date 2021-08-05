@@ -1,9 +1,9 @@
 <resources>
-    <string name="app_name">ImageSearch</string>
-    <string name="title_home">Images</string>
-    <string name="title_favourites">Favourites</string>
+    <string name="app_name">Image Loader</string>
 
-    <string name="title_notifications">TODO</string>
+    <string name="title_images">Images</string>
+    <string name="title_favourites">Favourites</string>
+    <string name="title_app_info">App info</string>
 
     <string name="empty_data_text">Oops, we have no data for show you</string>
     <string name="no_network_error_text">No internet connection</string>

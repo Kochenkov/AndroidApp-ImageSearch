@@ -23,11 +23,11 @@ import com.vkochenkov.imagesearch.presentation.activity.ImageActivity
 import com.vkochenkov.imagesearch.presentation.adapter.ImageViewHolder
 import com.vkochenkov.imagesearch.presentation.adapter.ImagesAdapter
 import com.vkochenkov.imagesearch.presentation.adapter.ItemClickListener
-import com.vkochenkov.imagesearch.presentation.view_model.HomeViewModel
+import com.vkochenkov.imagesearch.presentation.view_model.ImagesViewModel
 import com.vkochenkov.imagesearch.presentation.view_model.ViewModelFactory
 import javax.inject.Inject
 
-class HomeFragment : Fragment() {
+class ImagesFragment : Fragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
@@ -36,8 +36,8 @@ class HomeFragment : Fragment() {
     private lateinit var emptyListTv: TextView
     private lateinit var progressBar: ProgressBar
 
-    private val homeViewModel: HomeViewModel by lazy {
-        ViewModelProvider(requireActivity() , viewModelFactory).get(HomeViewModel::class.java)
+    private val imagesViewModel: ImagesViewModel by lazy {
+        ViewModelProvider(requireActivity() , viewModelFactory).get(ImagesViewModel::class.java)
     }
 
     override fun onCreateView(
@@ -47,9 +47,9 @@ class HomeFragment : Fragment() {
     ): View? {
 
         App.appComponent.inject(this)
-        homeViewModel.onCreateView()
+        imagesViewModel.onCreateView()
 
-        val root = inflater.inflate(R.layout.fragment_home, container, false)
+        val root = inflater.inflate(R.layout.fragment_images, container, false)
         initViews(root)
         initRecyclerView(root)
         initLiveDataObservers()
@@ -62,7 +62,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun initLiveDataObservers() {
-        homeViewModel.networkState.observe(viewLifecycleOwner, Observer {
+        imagesViewModel.networkState.observe(viewLifecycleOwner, Observer {
             emptyListTv.visibility = View.VISIBLE
             when (it) {
                 NetworkState.LOADING -> {
@@ -82,7 +82,7 @@ class HomeFragment : Fragment() {
                 }
             }
         })
-        homeViewModel.itemsList.observe(viewLifecycleOwner, Observer {
+        imagesViewModel.itemsList.observe(viewLifecycleOwner, Observer {
             (imagesRecyclerView.adapter as ImagesAdapter).setItemsList(it)
             (imagesRecyclerView.adapter as ImagesAdapter).notifyDataSetChanged()
             checkItemsListSize()
@@ -94,7 +94,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun checkItemsListSize() {
-        if (homeViewModel.itemsList.value?.size == 0 || homeViewModel.itemsList.value == null) {
+        if (imagesViewModel.itemsList.value?.size == 0 || imagesViewModel.itemsList.value == null) {
             emptyListTv.visibility = View.VISIBLE
         } else {
             emptyListTv.visibility = View.INVISIBLE
