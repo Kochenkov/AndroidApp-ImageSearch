@@ -1,57 +1,54 @@
 package com.vkochenkov.imagesearch.presentation.view_model
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.vkochenkov.imagesearch.data.Repository
-import com.vkochenkov.imagesearch.data.model.ApiResponse
-import com.vkochenkov.imagesearch.data.model.ImageItem
-import com.vkochenkov.imagesearch.data.model.Mapper
-import com.vkochenkov.imagesearch.data.model.NetworkState
-import io.reactivex.SingleObserver
+import com.vkochenkov.imagesearch.data.model.*
+import io.reactivex.MaybeObserver
 import io.reactivex.disposables.Disposable
 import javax.inject.Inject
 
 class FavouritesViewModel @Inject constructor(val repository: Repository) : ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is dashboard Fragment"
+    private val _dbState = MutableLiveData<DbState>()
+    val dbState: LiveData<DbState> = _dbState
+
+    private val _favouritesList = MutableLiveData<List<ImageItem>>()
+    val favouritesList: LiveData<List<ImageItem>> = _favouritesList
+
+    fun onCreateView() {
+        getFavourites()
     }
-    val text: LiveData<String> = _text
 
+    private fun getFavourites() {
+        repository.getAllItemsFromFavorites().subscribe(maybeRxObserver())
+    }
 
-//    private val _networkState = MutableLiveData<NetworkState>()
-//    val networkState: LiveData<NetworkState> = _networkState
-//
-//    private val _itemsList = MutableLiveData<List<ImageItem>>()
-//    val itemsList: LiveData<List<ImageItem>> = _itemsList
-//
-//    fun onCreateView() {
-//        if (_itemsList.value == null) {
-//            makeApiCall()
-//        }
-//    }
-//
-//    private fun singleRxObserver() = object : SingleObserver<ApiResponse> {
-//        override fun onSubscribe(d: Disposable) {
-//            _networkState.postValue(NetworkState.LOADING)
-//        }
-//
-//        override fun onSuccess(r: ApiResponse) {
-//            _networkState.postValue(NetworkState.SUCCESS)
-//            _itemsList.postValue(Mapper.map(r))
-//        }
-//
-//        override fun onError(e: Throwable) {
-//            _networkState.postValue(NetworkState.LOADING_ERROR)
-//        }
-//    }
-//
-//    private fun makeApiCall() {
-//        if (networkChecker.isOnline()) {
-//            repository.getImagesFromApi(1).subscribe(singleRxObserver())
-//        } else {
-//            _networkState.postValue(NetworkState.NO_INTERNET_CONNECTION)
-//        }
-//    }
+    private fun maybeRxObserver() = object : MaybeObserver<List<ImageItem>> {
+        override fun onSubscribe(d: Disposable) {
+            _dbState.postValue(DbState.GETTING)
+            Log.d("dddbbb", "onSub")
+        }
+
+        override fun onSuccess(list: List<ImageItem>) {
+            _dbState.postValue(DbState.SUCCESS)
+            _favouritesList.postValue(list)
+            Log.d("dddbbb", "onSucccc")
+
+        }
+
+        override fun onError(e: Throwable) {
+            _dbState.postValue(DbState.GETTING_ERROR)
+            Log.d("dddbbb", "onErrrrooorrr")
+
+        }
+
+        override fun onComplete() {
+            //todo
+            Log.d("dddbbb", "onCompleeete")
+
+        }
+    }
 }

@@ -61,8 +61,8 @@ class ImagesFragment : Fragment() {
     }
 
     private fun initViews(view: View) {
-        progressBar = view.findViewById(R.id.progress_home)
-        emptyListTv = view.findViewById(R.id.tv_empty_home)
+        progressBar = view.findViewById(R.id.images_progress)
+        emptyListTv = view.findViewById(R.id.images_empty_tv)
     }
 
     private fun initLiveDataObservers() {
@@ -106,7 +106,7 @@ class ImagesFragment : Fragment() {
     }
 
     private fun initRecyclerView(view: View) {
-        imagesRecyclerView = view.findViewById(R.id.images_list)
+        imagesRecyclerView = view.findViewById(R.id.images_recycler)
         if (this.resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
             imagesRecyclerView.layoutManager = GridLayoutManager(view.context, 2)
         } else {

@@ -26,6 +26,7 @@ class ImagesViewModel @Inject constructor(
 
     fun onCreateView() {
         if (_itemsList.value == null) {
+            //todo add pagination
             makeApiCall()
         }
     }
