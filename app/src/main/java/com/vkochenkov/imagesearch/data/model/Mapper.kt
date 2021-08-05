@@ -9,7 +9,7 @@ object Mapper {
             val imageItem = ImageItem(
                 hit.id,
                 hit.type,
-                hit.tags.split(""),
+                hit.tags,
                 hit.previewUrl,
                 hit.webformatUrl,
                 hit.largeImageUrl

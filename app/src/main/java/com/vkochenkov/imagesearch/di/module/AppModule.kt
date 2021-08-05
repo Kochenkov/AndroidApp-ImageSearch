@@ -4,6 +4,7 @@ import android.app.Application
 import com.vkochenkov.imagesearch.App
 import com.vkochenkov.imagesearch.data.Repository
 import com.vkochenkov.imagesearch.data.api.ApiService
+import com.vkochenkov.imagesearch.data.db.FavouriteImagesDao
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -17,5 +18,5 @@ class AppModule(private val app: App) {
 
     @Provides
     @Singleton
-    fun provideRepository(apiService: ApiService): Repository = Repository(apiService)
+    fun provideRepository(apiService: ApiService, dao: FavouriteImagesDao): Repository = Repository(apiService, dao)
 }

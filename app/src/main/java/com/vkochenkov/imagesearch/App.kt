@@ -4,6 +4,7 @@ import android.app.Application
 import com.vkochenkov.imagesearch.di.component.AppComponent
 import com.vkochenkov.imagesearch.di.component.DaggerAppComponent
 import com.vkochenkov.imagesearch.di.module.AppModule
+import com.vkochenkov.imagesearch.di.module.DatabaseModule
 import com.vkochenkov.imagesearch.di.module.NetworkModule
 
 class App: Application() {
@@ -23,6 +24,7 @@ class App: Application() {
         appComponent = DaggerAppComponent.builder()
             .appModule(AppModule(this))
             .networkModule(NetworkModule())
+            .databaseModule(DatabaseModule())
             .build()
     }
 }
