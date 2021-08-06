@@ -19,7 +19,7 @@ import com.vkochenkov.imagesearch.di.App
 import com.vkochenkov.imagesearch.di.App.Companion.IMAGE_ITEM
 import com.vkochenkov.imagesearch.R
 import com.vkochenkov.imagesearch.data.model.ImageItem
-import com.vkochenkov.imagesearch.data.model.states.NetworkState
+import com.vkochenkov.imagesearch.data.api.NetworkState
 import com.vkochenkov.imagesearch.presentation.activity.ImageActivity
 import com.vkochenkov.imagesearch.presentation.adapter.ImageViewHolder
 import com.vkochenkov.imagesearch.presentation.adapter.ImagesAdapter

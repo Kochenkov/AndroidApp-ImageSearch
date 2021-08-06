@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.vkochenkov.imagesearch.data.Repository
 import com.vkochenkov.imagesearch.data.api.dto.ApiResponse
 import com.vkochenkov.imagesearch.data.model.ImageItem
-import com.vkochenkov.imagesearch.data.model.states.NetworkState
+import com.vkochenkov.imagesearch.data.api.NetworkState
 import com.vkochenkov.imagesearch.data.model.Mapper
 import com.vkochenkov.imagesearch.presentation.utils.NetworkChecker
 import io.reactivex.SingleObserver

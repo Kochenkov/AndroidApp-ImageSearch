@@ -68,7 +68,7 @@
         android:layout_width="@dimen/icon_size"
         android:layout_height="@dimen/icon_size"
         android:layout_margin="@dimen/main_margin"
-        android:background="@drawable/ic_baseline_favorite_border_24"
+        android:background="@drawable/ic_red_favorite_border_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/image_wallpaper_btn"
         app:layout_constraintStart_toEndOf="@id/image_share_btn" />

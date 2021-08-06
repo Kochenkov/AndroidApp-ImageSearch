@@ -39,5 +39,4 @@ class Repository @Inject constructor(
         dao.insertImage(item)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-
 }

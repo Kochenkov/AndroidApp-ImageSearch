@@ -1,6 +1,7 @@
 package com.vkochenkov.imagesearch.presentation.activity
 
 import android.content.Intent
+import android.graphics.PorterDuff
 import android.os.Bundle
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
@@ -8,6 +9,7 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
@@ -68,12 +70,13 @@ class ImageActivity : AppCompatActivity() {
 
     private fun initLiveDataObservers() {
         imageViewModel.isFavouriteImage.observe(this, Observer {
+            //todo make like an animation?
             if (it) {
                 likeBtn.background =
-                    AppCompatResources.getDrawable(this, R.drawable.ic_baseline_favorite_24)
+                    AppCompatResources.getDrawable(this, R.drawable.ic_red_favorite_24)
             } else {
                 likeBtn.background =
-                    AppCompatResources.getDrawable(this, R.drawable.ic_baseline_favorite_border_24)
+                    AppCompatResources.getDrawable(this, R.drawable.ic_red_favorite_border_24)
 
             }
         })
