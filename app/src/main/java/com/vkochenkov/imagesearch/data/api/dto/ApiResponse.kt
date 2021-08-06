@@ -1,4 +1,4 @@
-package com.vkochenkov.imagesearch.data.model
+package com.vkochenkov.imagesearch.data.api.dto
 
 import com.google.gson.annotations.SerializedName
 

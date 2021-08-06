@@ -1,5 +1,6 @@
 package com.vkochenkov.imagesearch.data.model
 
+import com.vkochenkov.imagesearch.data.api.dto.ApiResponse
 import java.util.ArrayList
 
 object Mapper {

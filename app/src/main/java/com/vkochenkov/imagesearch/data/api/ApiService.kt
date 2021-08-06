@@ -1,6 +1,6 @@
 package com.vkochenkov.imagesearch.data.api
 
-import com.vkochenkov.imagesearch.data.model.ApiResponse
+import com.vkochenkov.imagesearch.data.api.dto.ApiResponse
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Query

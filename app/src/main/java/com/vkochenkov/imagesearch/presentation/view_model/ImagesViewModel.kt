@@ -4,9 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.vkochenkov.imagesearch.data.Repository
-import com.vkochenkov.imagesearch.data.model.ApiResponse
+import com.vkochenkov.imagesearch.data.api.dto.ApiResponse
 import com.vkochenkov.imagesearch.data.model.ImageItem
-import com.vkochenkov.imagesearch.data.model.NetworkState
+import com.vkochenkov.imagesearch.data.model.states.NetworkState
 import com.vkochenkov.imagesearch.data.model.Mapper
 import com.vkochenkov.imagesearch.presentation.utils.NetworkChecker
 import io.reactivex.SingleObserver

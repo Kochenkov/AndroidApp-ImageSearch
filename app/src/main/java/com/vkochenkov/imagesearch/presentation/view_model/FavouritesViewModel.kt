@@ -1,11 +1,11 @@
 package com.vkochenkov.imagesearch.presentation.view_model
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.vkochenkov.imagesearch.data.Repository
 import com.vkochenkov.imagesearch.data.model.*
+import com.vkochenkov.imagesearch.data.model.states.DbState
 import io.reactivex.MaybeObserver
 import io.reactivex.disposables.Disposable
 import javax.inject.Inject
