@@ -14,6 +14,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.vkochenkov.imagesearch.di.App
 import com.vkochenkov.imagesearch.di.App.Companion.IMAGE_ITEM
 import com.vkochenkov.imagesearch.R
@@ -35,6 +36,7 @@ class ImagesFragment : Fragment() {
     private lateinit var imagesRecyclerView: RecyclerView
     private lateinit var emptyListTv: TextView
     private lateinit var progressBar: ProgressBar
+    private lateinit var swipeRefreshLayout: SwipeRefreshLayout
 
     private val imagesViewModel: ImagesViewModel by lazy {
         ViewModelProvider(requireActivity() , viewModelFactory).get(ImagesViewModel::class.java)
@@ -57,12 +59,22 @@ class ImagesFragment : Fragment() {
         initViews(root)
         initRecyclerView(root)
         initLiveDataObservers()
+        setListeners()
+
         return root
+    }
+
+    private fun setListeners() {
+        swipeRefreshLayout.setOnRefreshListener {
+            imagesViewModel.onSwipeRefresh()
+            swipeRefreshLayout.isRefreshing = false
+        }
     }
 
     private fun initViews(view: View) {
         progressBar = view.findViewById(R.id.images_progress)
         emptyListTv = view.findViewById(R.id.images_empty_tv)
+        swipeRefreshLayout = view.findViewById(R.id.images_swipe_refresh)
     }
 
     private fun initLiveDataObservers() {

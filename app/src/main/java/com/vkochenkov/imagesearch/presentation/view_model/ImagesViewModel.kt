@@ -27,17 +27,23 @@ class ImagesViewModel @Inject constructor(
     fun onCreateView() {
         if (_itemsList.value == null) {
             //todo add pagination
-            makeApiCall()
+            makeApiCall(1)
         }
     }
 
-    private fun singleRxObserver() = object : SingleObserver<ApiResponse> {
+    fun onSwipeRefresh() {
+        makeApiCall(1)
+    }
+
+    private fun getImagesFromApiRxObserver() = object : SingleObserver<ApiResponse> {
         override fun onSubscribe(d: Disposable) {
             _networkState.postValue(NetworkState.LOADING)
         }
 
         override fun onSuccess(r: ApiResponse) {
             _networkState.postValue(NetworkState.SUCCESS)
+            //todo
+           // PagesStorage.validatePagesSize(r.totalHits)
             _itemsList.postValue(Mapper.map(r))
         }
 
@@ -46,9 +52,9 @@ class ImagesViewModel @Inject constructor(
         }
     }
 
-    private fun makeApiCall() {
+    private fun makeApiCall(page: Int) {
         if (networkChecker.isOnline()) {
-            repository.getImagesFromApi(1).subscribe(singleRxObserver())
+            repository.getImagesFromApi(page).subscribe(getImagesFromApiRxObserver())
         } else {
             _networkState.postValue(NetworkState.NO_INTERNET_CONNECTION)
         }
