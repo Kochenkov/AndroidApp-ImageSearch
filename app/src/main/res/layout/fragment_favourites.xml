@@ -14,7 +14,7 @@
         android:text="@string/empty_favourites_text"
         android:textAlignment="center"
         android:textSize="@dimen/error_text_size"
-        android:visibility="visible"
+        android:visibility="invisible"
         tools:text="@string/empty_favourites_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

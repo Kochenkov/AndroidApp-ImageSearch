@@ -7,14 +7,28 @@ import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.content.res.AppCompatResources
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
-import com.vkochenkov.imagesearch.di.App.Companion.IMAGE_ITEM
 import com.vkochenkov.imagesearch.R
 import com.vkochenkov.imagesearch.data.model.ImageItem
+import com.vkochenkov.imagesearch.di.App
+import com.vkochenkov.imagesearch.di.App.Companion.IMAGE_ITEM
 import com.vkochenkov.imagesearch.presentation.service.WallpaperService
 import com.vkochenkov.imagesearch.presentation.utils.ImageLoader
+import com.vkochenkov.imagesearch.presentation.view_model.ImageViewModel
+import com.vkochenkov.imagesearch.presentation.view_model.ViewModelFactory
+import javax.inject.Inject
 
 class ImageActivity : AppCompatActivity() {
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+
+    private val imageViewModel: ImageViewModel by lazy {
+        ViewModelProvider(this, viewModelFactory).get(ImageViewModel::class.java)
+    }
 
     private lateinit var imageLoader: ImageLoader
 
@@ -28,25 +42,46 @@ class ImageActivity : AppCompatActivity() {
     private lateinit var downloadBtn: ImageView
     private lateinit var shareBtn: ImageView
 
+    private lateinit var item: ImageItem
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_image)
 
+        App.appComponent.inject(this)
+
         initViews()
         supportActionBar?.hide()
 
-        val item = intent.getParcelableExtra<ImageItem>(IMAGE_ITEM)
-        val url = item?.largeImageUrl.toString()
+        item = intent.getParcelableExtra(IMAGE_ITEM)!!
+        val url = item.largeImageUrl.toString()
 
         imageLoader = ImageLoader(this, url, imageView, emptyDataTv)
         imageLoader.setProgressBar(progressBar)
         imageLoader.loadImage()
 
+        imageViewModel.onCreate(item)
+        initLiveDataObservers()
+
         setOnClickListeners()
     }
 
+    private fun initLiveDataObservers() {
+        imageViewModel.isFavouriteImage.observe(this, Observer {
+            if (it) {
+                likeBtn.background =
+                    AppCompatResources.getDrawable(this, R.drawable.ic_baseline_favorite_24)
+            } else {
+                likeBtn.background =
+                    AppCompatResources.getDrawable(this, R.drawable.ic_baseline_favorite_border_24)
+
+            }
+        })
+    }
+
     private fun setOnClickListeners() {
-        val animationRotateCenter = AnimationUtils.loadAnimation(this, R.anim.decreases_when_pressed)
+        val animationRotateCenter =
+            AnimationUtils.loadAnimation(this, R.anim.decreases_when_pressed)
 
         wallpaperBtn.setOnClickListener {
             it.startAnimation(animationRotateCenter)
@@ -54,7 +89,7 @@ class ImageActivity : AppCompatActivity() {
         }
         likeBtn.setOnClickListener {
             it.startAnimation(animationRotateCenter)
-            //todo
+            imageViewModel.changeImageFavouriteState(item)
         }
         downloadBtn.setOnClickListener {
             it.startAnimation(animationRotateCenter)

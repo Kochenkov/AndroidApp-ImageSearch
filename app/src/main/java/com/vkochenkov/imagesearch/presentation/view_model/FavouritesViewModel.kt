@@ -18,10 +18,6 @@ class FavouritesViewModel @Inject constructor(val repository: Repository) : View
     private val _favouritesList = MutableLiveData<List<ImageItem>>()
     val favouritesList: LiveData<List<ImageItem>> = _favouritesList
 
-    fun onCreateView() {
-        getFavourites()
-    }
-
     private fun getFavourites() {
         repository.getAllItemsFromFavorites().subscribe(maybeRxObserver())
     }
@@ -29,26 +25,22 @@ class FavouritesViewModel @Inject constructor(val repository: Repository) : View
     private fun maybeRxObserver() = object : MaybeObserver<List<ImageItem>> {
         override fun onSubscribe(d: Disposable) {
             _dbState.postValue(DbState.GETTING)
-            Log.d("dddbbb", "onSub")
         }
 
         override fun onSuccess(list: List<ImageItem>) {
             _dbState.postValue(DbState.SUCCESS)
             _favouritesList.postValue(list)
-            Log.d("dddbbb", "onSucccc")
-
         }
 
         override fun onError(e: Throwable) {
             _dbState.postValue(DbState.GETTING_ERROR)
-            Log.d("dddbbb", "onErrrrooorrr")
-
         }
 
         override fun onComplete() {
-            //todo
-            Log.d("dddbbb", "onCompleeete")
-
         }
+    }
+
+    fun onResume() {
+        getFavourites()
     }
 }

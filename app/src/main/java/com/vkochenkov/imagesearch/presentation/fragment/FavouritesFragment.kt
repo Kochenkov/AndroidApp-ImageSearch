@@ -51,13 +51,16 @@ class FavouritesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        favouritesViewModel.onCreateView()
-
         val root = inflater.inflate(R.layout.fragment_favourites, container, false)
         initViews(root)
         initRecyclerView(root)
         initLiveDataObservers()
         return root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        favouritesViewModel.onResume()
     }
 
     private fun initViews(view: View) {

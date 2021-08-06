@@ -23,22 +23,21 @@ class Repository @Inject constructor(
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
 
-    fun isFavouriteItem(): Boolean {
-        return false
-        //todo
-    }
-
     fun getItemFromFavourites(id: Int) =
         dao.getImage(id)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
 
-    fun deleteItemFromFavourites(image: ImageItem) {
-        dao.deleteImage(image)
-    }
 
-    fun addItemToFavourites(image: ImageItem) {
-        dao.insertImage(image)
-    }
+    fun deleteItemFromFavourites(item: ImageItem) =
+        dao.deleteImage(item)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+
+
+    fun addItemToFavourites(item: ImageItem) =
+        dao.insertImage(item)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
 
 }

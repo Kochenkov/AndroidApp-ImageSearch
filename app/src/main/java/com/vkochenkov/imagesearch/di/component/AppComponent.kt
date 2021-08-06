@@ -5,6 +5,7 @@ import com.vkochenkov.imagesearch.presentation.utils.ImageLoader
 import com.vkochenkov.imagesearch.di.module.AppModule
 import com.vkochenkov.imagesearch.di.module.DatabaseModule
 import com.vkochenkov.imagesearch.di.module.NetworkModule
+import com.vkochenkov.imagesearch.presentation.activity.ImageActivity
 import com.vkochenkov.imagesearch.presentation.activity.MainActivity
 import com.vkochenkov.imagesearch.presentation.fragment.AppInfoFragment
 import com.vkochenkov.imagesearch.presentation.fragment.FavouritesFragment
@@ -18,9 +19,12 @@ import javax.inject.Singleton
 interface AppComponent {
 
     fun inject(activity: MainActivity)
+    fun inject(activity: ImageActivity)
+
     fun inject(fragment: ImagesFragment)
     fun inject(fragment: FavouritesFragment)
     fun inject(fragment: AppInfoFragment)
+
     fun inject(repository: Repository)
     fun inject(imageLoader: ImageLoader)
 }

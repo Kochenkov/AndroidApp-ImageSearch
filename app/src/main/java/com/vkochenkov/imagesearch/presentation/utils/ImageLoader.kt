@@ -20,6 +20,7 @@ import com.davemorrissey.labs.subscaleview.ImageSource
 import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
 import com.vkochenkov.imagesearch.di.App
 import com.vkochenkov.imagesearch.R
+import com.vkochenkov.imagesearch.data.BitmapStorage
 import javax.inject.Inject
 
 class ImageLoader(
@@ -34,10 +35,6 @@ class ImageLoader(
 
     init {
         App.appComponent.inject(this)
-    }
-
-    companion object {
-        var bitmapImage: Bitmap? = null
     }
 
     private val requestOptions: RequestOptions = RequestOptions().centerInside()
@@ -60,7 +57,7 @@ class ImageLoader(
         } else {
             progressBar?.visibility = View.INVISIBLE
             emptyDataTextView.visibility = View.VISIBLE
-            bitmapImage = null
+            BitmapStorage.bitmapImage = null
             showErrorNetworkToast(R.string.no_network_error_text)
         }
     }
@@ -85,7 +82,7 @@ class ImageLoader(
         ): Boolean {
             progressBar?.visibility = View.INVISIBLE
             emptyDataTextView.visibility = View.VISIBLE
-            bitmapImage = null
+            BitmapStorage.bitmapImage = null
             showErrorNetworkToast(R.string.load_network_error_text)
             return false
         }
@@ -99,7 +96,7 @@ class ImageLoader(
         ): Boolean {
             progressBar?.visibility = View.INVISIBLE
             emptyDataTextView.visibility = View.INVISIBLE
-            bitmapImage = resource
+            BitmapStorage.bitmapImage = resource
             return false
         }
     }

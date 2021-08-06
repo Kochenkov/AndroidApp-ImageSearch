@@ -7,8 +7,7 @@ import com.vkochenkov.imagesearch.presentation.utils.NetworkChecker
 import javax.inject.Inject
 
 class ViewModelFactory @Inject constructor(private val repository: Repository,
-                                           private val networkChecker: NetworkChecker
-) :
+                                           private val networkChecker: NetworkChecker) :
     ViewModelProvider.Factory {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
@@ -21,6 +20,9 @@ class ViewModelFactory @Inject constructor(private val repository: Repository,
             }
             modelClass.isAssignableFrom(AppInfoViewModel::class.java) -> {
                 AppInfoViewModel(repository) as T
+            }
+            modelClass.isAssignableFrom(ImageViewModel::class.java) -> {
+                ImageViewModel(repository) as T
             }
             else -> {
                 throw IllegalArgumentException("Unknown ViewModel class")

@@ -3,8 +3,8 @@ package com.vkochenkov.imagesearch.presentation.service
 import android.app.IntentService
 import android.app.WallpaperManager
 import android.content.Intent
+import com.vkochenkov.imagesearch.data.BitmapStorage
 import com.vkochenkov.imagesearch.presentation.receiver.WallpaperBroadcastReceiver
-import com.vkochenkov.imagesearch.presentation.utils.ImageLoader
 
 class WallpaperService : IntentService("WallpaperService") {
 
@@ -17,11 +17,11 @@ class WallpaperService : IntentService("WallpaperService") {
 
         try {
             val wallpaperManager = WallpaperManager.getInstance(applicationContext)
-            wallpaperManager.setBitmap(ImageLoader.bitmapImage)
+            wallpaperManager.setBitmap(BitmapStorage.bitmapImage)
 
             //todo разграничить
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-                wallpaperManager.setBitmap(ImageLoader.bitmapImage, null, true, WallpaperManager.FLAG_LOCK)
+                wallpaperManager.setBitmap(BitmapStorage.bitmapImage, null, true, WallpaperManager.FLAG_LOCK)
             }
             //загрузка прошла успешно
             sendBroadcast(Intent(this, WallpaperBroadcastReceiver::class.java).also {
