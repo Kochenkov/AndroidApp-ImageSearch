@@ -14,8 +14,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.vkochenkov.imagesearch.App
-import com.vkochenkov.imagesearch.App.Companion.IMAGE_ITEM
+import com.vkochenkov.imagesearch.di.App
+import com.vkochenkov.imagesearch.di.App.Companion.IMAGE_ITEM
 import com.vkochenkov.imagesearch.R
 import com.vkochenkov.imagesearch.data.model.ImageItem
 import com.vkochenkov.imagesearch.data.model.NetworkState

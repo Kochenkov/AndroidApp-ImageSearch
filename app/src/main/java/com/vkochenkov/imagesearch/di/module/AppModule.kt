@@ -1,7 +1,7 @@
 package com.vkochenkov.imagesearch.di.module
 
 import android.app.Application
-import com.vkochenkov.imagesearch.App
+import com.vkochenkov.imagesearch.di.App
 import com.vkochenkov.imagesearch.data.Repository
 import com.vkochenkov.imagesearch.data.api.ApiService
 import com.vkochenkov.imagesearch.data.db.FavouriteImagesDao

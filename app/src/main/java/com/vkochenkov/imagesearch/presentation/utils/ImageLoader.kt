@@ -18,7 +18,7 @@ import com.bumptech.glide.request.target.Target
 import com.bumptech.glide.request.transition.Transition
 import com.davemorrissey.labs.subscaleview.ImageSource
 import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
-import com.vkochenkov.imagesearch.App
+import com.vkochenkov.imagesearch.di.App
 import com.vkochenkov.imagesearch.R
 import javax.inject.Inject
 

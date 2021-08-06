@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.vkochenkov.imagesearch.App
+import com.vkochenkov.imagesearch.di.App
 import com.vkochenkov.imagesearch.presentation.view_model.AppInfoViewModel
 import com.vkochenkov.imagesearch.presentation.view_model.ViewModelFactory
 import javax.inject.Inject

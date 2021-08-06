@@ -1,4 +1,4 @@
-package com.vkochenkov.imagesearch
+package com.vkochenkov.imagesearch.di
 
 import android.app.Application
 import com.vkochenkov.imagesearch.di.component.AppComponent
