@@ -7,4 +7,6 @@
     <dimen name="main_margin">16dp</dimen>
     <dimen name="error_text_size">20sp</dimen>
     <dimen name="icon_size">24dp</dimen>
+    <dimen name="main_text_size">18sp</dimen>
+    <dimen name="margin_24">24dp</dimen>
 </resources>

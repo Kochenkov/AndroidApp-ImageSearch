@@ -13,4 +13,8 @@
     <string name="wallpaper_error_str">Something went wrong: can\'t set wallpaper, try again later</string>
     <string name="wallpaper_success_str">The wallpaper has been successfully changed</string>
     <string name="wallpaper_loading_str">Start change wallpaper…</string>
+    <string name="home_screen_str">Home screen</string>
+    <string name="lock_screen_str">Lock screen</string>
+    <string name="both_screens_str">Both</string>
+    <string name="set_wallpaper_str">Set wallpaper</string>
 </resources>
