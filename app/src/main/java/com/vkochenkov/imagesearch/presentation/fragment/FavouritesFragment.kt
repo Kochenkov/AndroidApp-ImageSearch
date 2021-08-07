@@ -37,7 +37,7 @@ class FavouritesFragment : Fragment() {
 
 
     private val favouritesViewModel: FavouritesViewModel by lazy {
-        ViewModelProvider(this, viewModelFactory).get(FavouritesViewModel::class.java)
+        ViewModelProvider(requireActivity(), viewModelFactory).get(FavouritesViewModel::class.java)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

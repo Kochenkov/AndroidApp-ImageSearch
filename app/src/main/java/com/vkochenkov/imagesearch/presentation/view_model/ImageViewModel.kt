@@ -19,6 +19,14 @@ class ImageViewModel @Inject constructor(val repository: Repository) : ViewModel
         isImageFavourite(item)
     }
 
+    fun onLikeButtonClick(item: ImageItem) {
+        if (_isFavouriteImage.value!!) {
+            repository.deleteItemFromFavourites(item).subscribe(changeFavouriteRxObserver(item))
+        } else {
+            repository.addItemToFavourites(item).subscribe(changeFavouriteRxObserver(item))
+        }
+    }
+
     private fun isImageFavourite(item: ImageItem) {
         repository.getItemFromFavourites(item.id).subscribe(itemsRxObserver())
     }
@@ -44,14 +52,6 @@ class ImageViewModel @Inject constructor(val repository: Repository) : ViewModel
 
         override fun onComplete() {
             isImageFavourite(item)
-        }
-    }
-
-    fun changeImageFavouriteState(item: ImageItem) {
-        if (_isFavouriteImage.value!!) {
-            repository.deleteItemFromFavourites(item).subscribe(changeFavouriteRxObserver(item))
-        } else {
-            repository.addItemToFavourites(item).subscribe(changeFavouriteRxObserver(item))
         }
     }
 }

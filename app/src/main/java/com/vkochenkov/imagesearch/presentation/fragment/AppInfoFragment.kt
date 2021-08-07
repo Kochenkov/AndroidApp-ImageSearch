@@ -17,7 +17,7 @@ class AppInfoFragment : Fragment() {
     lateinit var viewModelFactory: ViewModelFactory
 
     private val appInfoViewModel: AppInfoViewModel by lazy {
-        ViewModelProvider(this, viewModelFactory).get(AppInfoViewModel::class.java)
+        ViewModelProvider(requireActivity(), viewModelFactory).get(AppInfoViewModel::class.java)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
