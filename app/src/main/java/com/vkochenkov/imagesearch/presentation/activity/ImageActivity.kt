@@ -1,6 +1,5 @@
 package com.vkochenkov.imagesearch.presentation.activity
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
@@ -17,7 +16,6 @@ import com.vkochenkov.imagesearch.di.App
 import com.vkochenkov.imagesearch.di.App.Companion.IMAGE_ITEM
 import com.vkochenkov.imagesearch.presentation.dialog.InfoBottomSheetDialog
 import com.vkochenkov.imagesearch.presentation.dialog.WallpaperBottomSheetDialog
-import com.vkochenkov.imagesearch.presentation.service.WallpaperService
 import com.vkochenkov.imagesearch.presentation.utils.ImageLoader
 import com.vkochenkov.imagesearch.presentation.view_model.ImageViewModel
 import com.vkochenkov.imagesearch.presentation.view_model.ViewModelFactory
@@ -56,7 +54,7 @@ class ImageActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         item = intent.getParcelableExtra(IMAGE_ITEM)!!
-        val url = item.largeImageUrl.toString()
+        val url = item.largeImageUrl
 
         imageLoader = ImageLoader(this, url, imageView, emptyDataTv)
         imageLoader.setProgressBar(progressBar)
@@ -83,31 +81,29 @@ class ImageActivity : AppCompatActivity() {
     }
 
     private fun setOnClickListeners() {
-        val animationRotateCenter =
+        val animationWhenPressed =
             AnimationUtils.loadAnimation(this, R.anim.decreases_when_pressed)
 
         wallpaperBtn.setOnClickListener {
-            it.startAnimation(animationRotateCenter)
+            it.startAnimation(animationWhenPressed)
             val wallpaperBottomSheetDialog = WallpaperBottomSheetDialog()
             wallpaperBottomSheetDialog.show(supportFragmentManager, "WallpaperBottomSheetDialog")
-            //startService(Intent(this, WallpaperService::class.java))
         }
         likeBtn.setOnClickListener {
-            it.startAnimation(animationRotateCenter)
+            it.startAnimation(animationWhenPressed)
             imageViewModel.onLikeButtonClick(item)
         }
         downloadBtn.setOnClickListener {
-            it.startAnimation(animationRotateCenter)
+            it.startAnimation(animationWhenPressed)
             //todo
         }
         infoBtn.setOnClickListener {
-            it.startAnimation(animationRotateCenter)
+            it.startAnimation(animationWhenPressed)
             val infoBottomSheetDialog = InfoBottomSheetDialog()
             infoBottomSheetDialog.show(supportFragmentManager, "InfoBottomSheetDialog")
-            //todo
         }
         shareBtn.setOnClickListener {
-            it.startAnimation(animationRotateCenter)
+            it.startAnimation(animationWhenPressed)
             //todo
         }
     }

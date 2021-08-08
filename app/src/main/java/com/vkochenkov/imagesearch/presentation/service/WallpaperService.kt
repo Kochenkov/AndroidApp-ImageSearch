@@ -8,6 +8,13 @@ import com.vkochenkov.imagesearch.presentation.receiver.WallpaperBroadcastReceiv
 
 class WallpaperService : IntentService("WallpaperService") {
 
+    companion object {
+        const val WALLPAPER_MODE = "WALLPAPER_MODE"
+        const val HOME = "HOME"
+        const val LOCK = "LOCK"
+        const val BOTH = "BOTH"
+    }
+
     override fun onHandleIntent(intent: Intent?) {
 
         //начали загрузку
@@ -16,13 +23,26 @@ class WallpaperService : IntentService("WallpaperService") {
         })
 
         try {
+            val mode: String = intent!!.getStringExtra(WALLPAPER_MODE)!!
             val wallpaperManager = WallpaperManager.getInstance(applicationContext)
-            wallpaperManager.setBitmap(BitmapStorage.bitmapImage)
 
-            //todo разграничить
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-                wallpaperManager.setBitmap(BitmapStorage.bitmapImage, null, true, WallpaperManager.FLAG_LOCK)
+            //устанавливаем обои на домашний экран
+            if (mode != LOCK) {
+                wallpaperManager.setBitmap(BitmapStorage.bitmapImage)
             }
+
+            //устанавливаем обои на экран блокировки
+            if (mode != HOME) {
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+                    wallpaperManager.setBitmap(
+                        BitmapStorage.bitmapImage,
+                        null,
+                        true,
+                        WallpaperManager.FLAG_LOCK
+                    )
+                }
+            }
+
             //загрузка прошла успешно
             sendBroadcast(Intent(this, WallpaperBroadcastReceiver::class.java).also {
                 it.action = WallpaperBroadcastReceiver.WALLPAPER_SUCCESS

@@ -17,7 +17,7 @@
 
     <TextView
         android:id="@+id/set_wallpaper_home_screen_tv"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/main_margin"
         android:layout_marginTop="@dimen/margin_24"
@@ -30,7 +30,7 @@
 
     <TextView
         android:id="@+id/set_wallpaper_lock_screen_tv"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/main_margin"
         android:layout_marginTop="@dimen/margin_24"
@@ -43,7 +43,7 @@
 
     <TextView
         android:id="@+id/set_wallpaper_both_screens_tv"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/main_margin"
         android:layout_marginTop="@dimen/margin_24"
