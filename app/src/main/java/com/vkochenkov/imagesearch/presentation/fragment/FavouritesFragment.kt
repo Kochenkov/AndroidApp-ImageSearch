@@ -35,7 +35,6 @@ class FavouritesFragment : Fragment() {
     private lateinit var emptyListTv: TextView
     private lateinit var progressBar: ProgressBar
 
-
     private val favouritesViewModel: FavouritesViewModel by lazy {
         ViewModelProvider(requireActivity(), viewModelFactory).get(FavouritesViewModel::class.java)
     }

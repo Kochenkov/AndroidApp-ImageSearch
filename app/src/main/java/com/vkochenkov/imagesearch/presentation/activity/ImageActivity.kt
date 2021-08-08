@@ -68,7 +68,6 @@ class ImageActivity : AppCompatActivity() {
 
     private fun initLiveDataObservers() {
         imageViewModel.isFavouriteImage.observe(this, Observer {
-            //todo make like an animation?
             if (it) {
                 likeBtn.background =
                     AppCompatResources.getDrawable(this, R.drawable.ic_red_favorite_24)
