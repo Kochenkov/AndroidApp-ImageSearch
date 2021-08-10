@@ -1,8 +1,7 @@
 package com.vkochenkov.imagesearch.presentation.activity
 
-import android.content.ContentValues
-import android.content.Context
-import android.graphics.Bitmap
+import android.Manifest
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.animation.AnimationUtils
@@ -12,6 +11,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
+import androidx.core.app.ActivityCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
@@ -25,8 +25,6 @@ import com.vkochenkov.imagesearch.presentation.dialog.WallpaperBottomSheetDialog
 import com.vkochenkov.imagesearch.presentation.utils.ImageLoader
 import com.vkochenkov.imagesearch.presentation.view_model.ImageViewModel
 import com.vkochenkov.imagesearch.presentation.view_model.ViewModelFactory
-import java.io.File
-import java.io.FileOutputStream
 import javax.inject.Inject
 
 
@@ -82,7 +80,7 @@ class ImageActivity : AppCompatActivity() {
                     AppCompatResources.getDrawable(this, R.drawable.ic_red_favorite_24)
             } else {
                 likeBtn.background =
-                    AppCompatResources.getDrawable(this, R.drawable.ic_red_favorite_border_24)
+                    AppCompatResources.getDrawable(this, R.drawable.ic_baseline_favorite_border_24)
             }
         })
     }
@@ -102,9 +100,7 @@ class ImageActivity : AppCompatActivity() {
         }
         downloadBtn.setOnClickListener {
             it.startAnimation(animationWhenPressed)
-            //todo 
-            //downloadImage()
-            //addImageToGallery("testApp", this)
+            downloadImg()
         }
         infoBtn.setOnClickListener {
             it.startAnimation(animationWhenPressed)
@@ -117,33 +113,34 @@ class ImageActivity : AppCompatActivity() {
         }
     }
 
-    //работает, но сохраняет файл в жопе мира
-    private fun downloadImage() {
-        val filepath = this.getExternalFilesDir(null)
-        val dir = File("${filepath}/Demo/")
-        dir.mkdir()
-        val file = File(dir, "${System.currentTimeMillis()}.jpg")
+    private fun downloadImg() {
+        //todo проверить на апи 21
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            val permissionArrays =
+                arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
 
-        try {
-            val outputStream = FileOutputStream(file)
-            BitmapStorage.bitmapImage?.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
-            outputStream.flush()
-            outputStream.close()
-            Toast.makeText(this, "Image has been saved!", Toast.LENGTH_SHORT).show()
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+                requestPermissions(permissionArrays, 11111)
+            }
 
-        } catch (e: Exception) {
-            e.printStackTrace()
-            Toast.makeText(this, "Something went wrong: can't download image!", Toast.LENGTH_SHORT).show()
+        } else {
+            try {
+                //todo сохраняется в pictures!!! ура, н нужно в отдельную папку
+                   // плюс, нужно исправить для апи больше 30 и проверить на нем
+                MediaStore.Images.Media.insertImage(
+                    contentResolver,
+                    BitmapStorage.bitmapImage,
+                    "yourTitle",
+                    "yourDescription"
+                )
+                Toast.makeText(this, "Image has been saved!", Toast.LENGTH_SHORT).show()
+
+            } catch (e: Exception) {
+                e.printStackTrace()
+                Toast.makeText(this, "Something went wrong: can't download image!", Toast.LENGTH_SHORT)
+                    .show()
+            }
         }
-    }
-
-    //не работает - пишет, что нужен пермишен
-    fun addImageToGallery(filePath: String?, context: Context) {
-        val values = ContentValues()
-        values.put(MediaStore.Images.Media.DATE_TAKEN, System.currentTimeMillis())
-        values.put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg")
-        values.put(MediaStore.MediaColumns.DATA, filePath)
-        context.getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values)
     }
 
     private fun initViews() {
