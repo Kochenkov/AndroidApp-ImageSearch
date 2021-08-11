@@ -114,30 +114,36 @@ class ImageActivity : AppCompatActivity() {
     }
 
     private fun downloadImg() {
-        //todo проверить на апи 21
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
             val permissionArrays =
                 arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
 
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-                requestPermissions(permissionArrays, 11111)
+                requestPermissions(permissionArrays, 1)
             }
-
         } else {
             try {
-                //todo сохраняется в pictures!!! ура, н нужно в отдельную папку
-                   // плюс, нужно исправить для апи больше 30 и проверить на нем
                 MediaStore.Images.Media.insertImage(
                     contentResolver,
                     BitmapStorage.bitmapImage,
-                    "yourTitle",
-                    "yourDescription"
+                    "Image_${System.currentTimeMillis()}", ""
                 )
-                Toast.makeText(this, "Image has been saved!", Toast.LENGTH_SHORT).show()
-
+                Toast.makeText(
+                    this,
+                    this.getString(R.string.downloading_success_str),
+                    Toast.LENGTH_SHORT
+                ).show()
             } catch (e: Exception) {
                 e.printStackTrace()
-                Toast.makeText(this, "Something went wrong: can't download image!", Toast.LENGTH_SHORT)
+                Toast.makeText(
+                    this,
+                    this.getString(R.string.downloading_error_str),
+                    Toast.LENGTH_SHORT
+                )
                     .show()
             }
         }

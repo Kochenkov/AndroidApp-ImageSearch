@@ -17,4 +17,6 @@
     <string name="lock_screen_str">Lock screen</string>
     <string name="both_screens_str">Both</string>
     <string name="set_wallpaper_str">Set wallpaper</string>
+    <string name="downloading_error_str">Something went wrong: can\'t download image</string>
+    <string name="downloading_success_str">Image has been saved</string>
 </resources>
