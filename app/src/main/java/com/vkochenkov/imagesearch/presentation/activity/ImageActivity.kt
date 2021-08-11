@@ -1,6 +1,7 @@
 package com.vkochenkov.imagesearch.presentation.activity
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.provider.MediaStore
@@ -110,6 +111,11 @@ class ImageActivity : AppCompatActivity() {
         shareBtn.setOnClickListener {
             it.startAnimation(animationWhenPressed)
             //todo
+            val intent = Intent(Intent.ACTION_SEND).apply {
+                type = ""
+                putExtra(Intent.EXTRA_TEXT, "test")
+            }
+            startActivity(Intent.createChooser(intent, null))
         }
     }
 
