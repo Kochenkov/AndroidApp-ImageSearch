@@ -7,6 +7,7 @@ import com.vkochenkov.imagesearch.data.Repository
 import com.vkochenkov.imagesearch.data.api.dto.ApiResponse
 import com.vkochenkov.imagesearch.data.model.ImageItem
 import com.vkochenkov.imagesearch.data.api.NetworkState
+import com.vkochenkov.imagesearch.data.api.PaggingStorage
 import com.vkochenkov.imagesearch.data.model.Mapper
 import com.vkochenkov.imagesearch.presentation.utils.NetworkChecker
 import io.reactivex.SingleObserver
@@ -26,13 +27,14 @@ class ImagesViewModel @Inject constructor(
 
     fun onCreateView() {
         if (_itemsList.value == null) {
-            //todo add pagination
-            makeApiCall(1)
+            PaggingStorage.currentPage = 1
+            makeApiCall(PaggingStorage.currentPage)
         }
     }
 
     fun onSwipeRefresh() {
-        makeApiCall(1)
+        PaggingStorage.currentPage = 1
+        makeApiCall(PaggingStorage.currentPage)
     }
 
     private fun getImagesFromApiRxObserver() = object : SingleObserver<ApiResponse> {
@@ -41,9 +43,8 @@ class ImagesViewModel @Inject constructor(
         }
 
         override fun onSuccess(r: ApiResponse) {
+            PaggingStorage.totalHits = r.totalHits
             _networkState.postValue(NetworkState.SUCCESS)
-            //todo
-           // PagesStorage.validatePagesSize(r.totalHits)
             _itemsList.postValue(Mapper.map(r))
         }
 
@@ -57,6 +58,12 @@ class ImagesViewModel @Inject constructor(
             repository.getImagesFromApi(page).subscribe(getImagesFromApiRxObserver())
         } else {
             _networkState.postValue(NetworkState.NO_INTERNET_CONNECTION)
+        }
+    }
+
+    fun onPaggingScroll() {
+        if (PaggingStorage.incrementPagesSize()) {
+            makeApiCall(PaggingStorage.currentPage)
         }
     }
 }
