@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -22,6 +21,7 @@ import com.vkochenkov.imagesearch.presentation.activity.ImageActivity
 import com.vkochenkov.imagesearch.presentation.adapter.ImageViewHolder
 import com.vkochenkov.imagesearch.presentation.adapter.ImagesAdapter
 import com.vkochenkov.imagesearch.presentation.adapter.ItemClickListener
+import com.vkochenkov.imagesearch.presentation.showToast
 import com.vkochenkov.imagesearch.presentation.view_model.FavouritesViewModel
 import com.vkochenkov.imagesearch.presentation.view_model.ViewModelFactory
 import javax.inject.Inject
@@ -77,7 +77,7 @@ class FavouritesFragment : Fragment() {
                 }
                 DbState.GETTING_ERROR -> {
                     progressBar.visibility = View.INVISIBLE
-                    showErrorToast(R.string.load_db_error_text)
+                    showToast(R.string.load_db_error_text)
                 }
                 DbState.SUCCESS -> {
                     progressBar.visibility = View.INVISIBLE
@@ -89,11 +89,6 @@ class FavouritesFragment : Fragment() {
             (favouritesRecyclerView.adapter as ImagesAdapter).notifyDataSetChanged()
             checkItemsListSize()
         })
-    }
-
-    private fun showErrorToast(strId: Int) {
-        Toast.makeText(activity, activity?.applicationContext?.getText(strId), Toast.LENGTH_SHORT)
-            .show()
     }
 
     private fun checkItemsListSize() {

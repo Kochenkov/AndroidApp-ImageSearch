@@ -9,7 +9,6 @@ import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.app.ActivityCompat
@@ -23,6 +22,7 @@ import com.vkochenkov.imagesearch.di.App
 import com.vkochenkov.imagesearch.di.App.Companion.IMAGE_ITEM
 import com.vkochenkov.imagesearch.presentation.dialog.InfoBottomSheetDialog
 import com.vkochenkov.imagesearch.presentation.dialog.WallpaperBottomSheetDialog
+import com.vkochenkov.imagesearch.presentation.showToast
 import com.vkochenkov.imagesearch.presentation.utils.ImageLoader
 import com.vkochenkov.imagesearch.presentation.view_model.ImageViewModel
 import com.vkochenkov.imagesearch.presentation.view_model.ViewModelFactory
@@ -101,7 +101,7 @@ class ImageActivity : AppCompatActivity() {
         }
         downloadBtn.setOnClickListener {
             it.startAnimation(animationWhenPressed)
-            downloadImg()
+            downloadImageToThePicturesGallery()
         }
         infoBtn.setOnClickListener {
             it.startAnimation(animationWhenPressed)
@@ -110,16 +110,16 @@ class ImageActivity : AppCompatActivity() {
         }
         shareBtn.setOnClickListener {
             it.startAnimation(animationWhenPressed)
-            //todo
             val intent = Intent(Intent.ACTION_SEND).apply {
-                type = ""
-                putExtra(Intent.EXTRA_TEXT, "test")
+                type = "text/plain"
+                putExtra(Intent.EXTRA_TEXT, item.largeImageUrl)
             }
             startActivity(Intent.createChooser(intent, null))
         }
     }
 
-    private fun downloadImg() {
+    private fun downloadImageToThePicturesGallery() {
+        //check permission
         if (ActivityCompat.checkSelfPermission(
                 this,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE
@@ -132,25 +132,21 @@ class ImageActivity : AppCompatActivity() {
                 requestPermissions(permissionArrays, 1)
             }
         } else {
+            //todo do in background
+            //do download image
             try {
-                MediaStore.Images.Media.insertImage(
-                    contentResolver,
-                    BitmapStorage.bitmapImage,
-                    "Image_${System.currentTimeMillis()}", ""
-                )
-                Toast.makeText(
-                    this,
-                    this.getString(R.string.downloading_success_str),
-                    Toast.LENGTH_SHORT
-                ).show()
+                if (BitmapStorage.bitmapImage!=null) {
+                    MediaStore.Images.Media.insertImage(
+                        contentResolver,
+                        BitmapStorage.bitmapImage,
+                        "Image_${System.currentTimeMillis()}", ""
+                    )
+                    showToast(R.string.downloading_success_str)
+                } else {
+                    showToast(R.string.downloading_error_str)
+                }
             } catch (e: Exception) {
-                e.printStackTrace()
-                Toast.makeText(
-                    this,
-                    this.getString(R.string.downloading_error_str),
-                    Toast.LENGTH_SHORT
-                )
-                    .show()
+                showToast(R.string.downloading_error_str)
             }
         }
     }

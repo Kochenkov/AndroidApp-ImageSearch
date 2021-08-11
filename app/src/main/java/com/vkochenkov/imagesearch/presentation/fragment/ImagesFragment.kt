@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -24,6 +23,7 @@ import com.vkochenkov.imagesearch.presentation.activity.ImageActivity
 import com.vkochenkov.imagesearch.presentation.adapter.ImageViewHolder
 import com.vkochenkov.imagesearch.presentation.adapter.ImagesAdapter
 import com.vkochenkov.imagesearch.presentation.adapter.ItemClickListener
+import com.vkochenkov.imagesearch.presentation.showToast
 import com.vkochenkov.imagesearch.presentation.view_model.ImagesViewModel
 import com.vkochenkov.imagesearch.presentation.view_model.ViewModelFactory
 import javax.inject.Inject
@@ -87,11 +87,11 @@ class ImagesFragment : Fragment() {
                 }
                 NetworkState.LOADING_ERROR -> {
                     progressBar.visibility = View.INVISIBLE
-                    showErrorNetworkToast(R.string.load_network_error_text)
+                    showToast(R.string.load_network_error_text)
                 }
                 NetworkState.NO_INTERNET_CONNECTION -> {
                     progressBar.visibility = View.INVISIBLE
-                    showErrorNetworkToast(R.string.no_network_error_text)
+                    showToast(R.string.no_network_error_text)
                 }
                 NetworkState.SUCCESS -> {
                     progressBar.visibility = View.INVISIBLE
@@ -103,10 +103,6 @@ class ImagesFragment : Fragment() {
             (imagesRecyclerView.adapter as ImagesAdapter).notifyDataSetChanged()
             checkItemsListSize()
         })
-    }
-
-    private fun showErrorNetworkToast(strId: Int) {
-        Toast.makeText(activity, activity?.applicationContext?.getText(strId), Toast.LENGTH_SHORT).show()
     }
 
     private fun checkItemsListSize() {
