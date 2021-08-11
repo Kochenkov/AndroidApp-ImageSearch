@@ -69,6 +69,7 @@ class ImagesFragment : Fragment() {
     private fun setListeners() {
         swipeRefreshLayout.setOnRefreshListener {
             imagesViewModel.onSwipeRefresh()
+            (imagesRecyclerView.adapter as ImagesAdapter).notifyDataSetChanged()
             swipeRefreshLayout.isRefreshing = false
         }
     }
@@ -81,7 +82,6 @@ class ImagesFragment : Fragment() {
 
     private fun initLiveDataObservers() {
         imagesViewModel.networkState.observe(viewLifecycleOwner, Observer {
-            emptyListTv.visibility = View.VISIBLE
             when (it) {
                 NetworkState.LOADING -> {
                     progressBar.visibility = View.VISIBLE
@@ -91,29 +91,30 @@ class ImagesFragment : Fragment() {
                 NetworkState.LOADING_ERROR -> {
                     progressBar.visibility = View.INVISIBLE
                     PaggingStorage.canDoCallNow = true
+                    checkItemsListSize()
                     showToast(R.string.load_network_error_text)
                 }
                 NetworkState.NO_INTERNET_CONNECTION -> {
                     progressBar.visibility = View.INVISIBLE
                     PaggingStorage.canDoCallNow = true
+                    checkItemsListSize()
                     showToast(R.string.no_network_error_text)
                 }
                 NetworkState.SUCCESS -> {
                     PaggingStorage.canDoCallNow = true
                     progressBar.visibility = View.INVISIBLE
+                    emptyListTv.visibility = View.INVISIBLE
                 }
             }
         })
         imagesViewModel.itemsList.observe(viewLifecycleOwner, Observer {
             (imagesRecyclerView.adapter as ImagesAdapter).setItemsList(it)
             (imagesRecyclerView.adapter as ImagesAdapter).notifyDataSetChanged()
-            checkItemsListSize()
         })
     }
 
-    //todo баг с одновременным отображением списка и заглушки
     private fun checkItemsListSize() {
-        if (imagesViewModel.itemsList.value == null) {
+        if (imagesViewModel.itemsList.value?.size == 0 || imagesViewModel.itemsList.value == null) {
             emptyListTv.visibility = View.VISIBLE
         } else {
             emptyListTv.visibility = View.INVISIBLE
@@ -146,11 +147,9 @@ class ImagesFragment : Fragment() {
                     val pastVisiblesItems =
                         (imagesRecyclerView.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
                     if (visibleItemCount + pastVisiblesItems >= totalItemCount) {
-                        //todo тут серьезная недоработка по вызову кол-ва страниц
-                            if (PaggingStorage.canDoCallNow) {
-                                imagesViewModel.onPaggingScroll()
-
-                            }
+                        if (PaggingStorage.canDoCallNow) {
+                            imagesViewModel.onPaggingScroll()
+                        }
                     }
                 }
             }

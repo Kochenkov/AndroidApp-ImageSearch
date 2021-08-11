@@ -1,5 +1,6 @@
 package com.vkochenkov.imagesearch.presentation.view_model
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -28,12 +29,14 @@ class ImagesViewModel @Inject constructor(
     fun onCreateView() {
         if (_itemsList.value == null) {
             PaggingStorage.currentPage = 1
+            PaggingStorage.temporaryDataList.clear()
             makeApiCall(PaggingStorage.currentPage)
         }
     }
 
     fun onSwipeRefresh() {
         PaggingStorage.currentPage = 1
+        PaggingStorage.temporaryDataList.clear()
         makeApiCall(PaggingStorage.currentPage)
     }
 
@@ -44,8 +47,10 @@ class ImagesViewModel @Inject constructor(
 
         override fun onSuccess(r: ApiResponse) {
             PaggingStorage.totalHits = r.totalHits
+            PaggingStorage.currentPage++
+            PaggingStorage.temporaryDataList.addAll(Mapper.map(r))
             _networkState.postValue(NetworkState.SUCCESS)
-            _itemsList.postValue(Mapper.map(r))
+            _itemsList.postValue(PaggingStorage.temporaryDataList)
         }
 
         override fun onError(e: Throwable) {
@@ -54,6 +59,7 @@ class ImagesViewModel @Inject constructor(
     }
 
     private fun makeApiCall(page: Int) {
+        Log.d("LOGGG", "current page is: ${PaggingStorage.currentPage}")
         if (networkChecker.isOnline()) {
             repository.getImagesFromApi(page).subscribe(getImagesFromApiRxObserver())
         } else {
@@ -62,7 +68,7 @@ class ImagesViewModel @Inject constructor(
     }
 
     fun onPaggingScroll() {
-        if (PaggingStorage.incrementPagesSize()) {
+        if (PaggingStorage.isHavePages()) {
             makeApiCall(PaggingStorage.currentPage)
         }
     }

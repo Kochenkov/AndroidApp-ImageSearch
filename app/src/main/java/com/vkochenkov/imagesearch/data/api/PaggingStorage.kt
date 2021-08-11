@@ -1,24 +1,24 @@
 package com.vkochenkov.imagesearch.data.api
 
 import android.util.Log
+import com.vkochenkov.imagesearch.data.model.ImageItem
 
 object PaggingStorage {
 
     const val hitsPerPage = 20
-    //инициализируется при первом запросе
+    //инициализируется при первом и каждом последующем запросе
     var totalHits: Int = 20
+    //пересчитывается при каждой попытке сделать запрос с пагинацией
     var maxPage: Int = 1
+    //становится 1 в методах рефреша и старта фрагмента, он onSuccess увеличивается
     var currentPage: Int = 1
+    //если идет LOADING state, то false иначе true
     var canDoCallNow = true
+    //для пагинации
+    val temporaryDataList = ArrayList<ImageItem>()
 
-    fun incrementPagesSize(): Boolean {
-        Log.d("PAGE LOGGG", currentPage.toString())
-        maxPage = totalHits / hitsPerPage + 1
-        return if (currentPage < maxPage) {
-            currentPage++
-            true
-        } else {
-            false
-        }
+    fun isHavePages(): Boolean {
+        maxPage = (totalHits / hitsPerPage) + 1
+        return currentPage < maxPage
     }
 }
