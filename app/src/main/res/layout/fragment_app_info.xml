@@ -1,76 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".presentation.fragment.AppInfoFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ImageView
+        android:id="@+id/app_info_img"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/pixabay_app_info_image"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/app_info_img"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:adjustViewBounds="true"
-            android:scaleType="fitCenter"
-            android:src="@drawable/pixabay_app_info_image"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/app_info_about_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/gradient_up"
+        android:paddingStart="@dimen/main_margin"
+        android:paddingTop="@dimen/half_margin"
+        android:paddingEnd="@dimen/main_margin"
+        android:paddingBottom="@dimen/main_margin"
+        android:text="@string/app_info_str"
+        android:textAlignment="center"
+        android:textSize="@dimen/main_text_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/app_info_img" />
 
-        <TextView
-            android:id="@+id/app_info_about_tv"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/main_margin"
-            android:text="@string/app_info_str"
-            android:textColor="@color/black"
-            android:textSize="@dimen/main_text_size"
-            app:layout_constraintEnd_toEndOf="@+id/app_info_img"
-            app:layout_constraintStart_toStartOf="@+id/app_info_img"
-            app:layout_constraintTop_toTopOf="@+id/app_info_img" />
+    <TextView
+        android:id="@+id/app_info_created_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/gradient_bottom"
+        android:paddingStart="@dimen/main_margin"
+        android:paddingTop="@dimen/main_margin"
+        android:paddingEnd="@dimen/main_margin"
+        android:paddingBottom="@dimen/half_margin"
+        android:text="@string/app_info_created_str"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/app_info_img"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-        <View
-            android:id="@+id/app_info_gradient_view"
-            android:layout_width="match_parent"
-            android:layout_height="12dp"
-            android:background="@drawable/gradient_bottom"
-            app:layout_constraintBottom_toBottomOf="@+id/app_info_img" />
-
-        <TextView
-            android:id="@+id/app_info_created_tv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/app_info_created_str"
-            android:textAlignment="center"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/app_info_img" />
-
-        <TextView
-            android:id="@+id/app_info_powered_tv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/app_info_powered_str"
-            android:textAlignment="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/app_info_created_tv" />
-
-        <TextView
-            android:id="@+id/app_info_img_tv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/app_info_main_img_info_str"
-            android:textAlignment="center"
-            android:layout_marginBottom="@dimen/half_margin"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/app_info_powered_tv" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
