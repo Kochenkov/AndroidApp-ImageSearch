@@ -19,4 +19,6 @@
     <string name="set_wallpaper_str">Set wallpaper</string>
     <string name="downloading_error_str">Something went wrong: can\'t download image</string>
     <string name="downloading_success_str">Image has been saved</string>
+    <string name="app_info_str">Welcome to this app! Here you can view hundreds of pictures, choose your own wallpaper, share it with friends and just enjoy the beautiful pictures:)</string>
+    <string name="app_info_created_str">© created by Kochenkov, powered by Pyxabay</string>
 </resources>

@@ -5,20 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import com.vkochenkov.imagesearch.R
 import com.vkochenkov.imagesearch.di.App
-import com.vkochenkov.imagesearch.presentation.view_model.AppInfoViewModel
-import com.vkochenkov.imagesearch.presentation.view_model.ViewModelFactory
-import javax.inject.Inject
 
 class AppInfoFragment : Fragment() {
-
-    @Inject
-    lateinit var viewModelFactory: ViewModelFactory
-
-    private val appInfoViewModel: AppInfoViewModel by lazy {
-        ViewModelProvider(requireActivity(), viewModelFactory).get(AppInfoViewModel::class.java)
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,8 +20,6 @@ class AppInfoFragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-
-        //todo
-        return null
+        return inflater.inflate(R.layout.fragment_app_info, container, false)
     }
 }

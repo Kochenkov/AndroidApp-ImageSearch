@@ -18,9 +18,6 @@ class ViewModelFactory @Inject constructor(private val repository: Repository,
             modelClass.isAssignableFrom(FavouritesViewModel::class.java) -> {
                 FavouritesViewModel(repository) as T
             }
-            modelClass.isAssignableFrom(AppInfoViewModel::class.java) -> {
-                AppInfoViewModel(repository) as T
-            }
             modelClass.isAssignableFrom(ImageViewModel::class.java) -> {
                 ImageViewModel(repository) as T
             }
