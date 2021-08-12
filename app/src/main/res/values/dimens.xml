@@ -4,10 +4,12 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="quart_margin">4dp</dimen>
     <dimen name="item_border_width">12dp</dimen>
+    <dimen name="app_info_border_width">24dp</dimen>
     <dimen name="main_margin">16dp</dimen>
     <dimen name="error_text_size">20sp</dimen>
-    <dimen name="icon_size">24dp</dimen>
+    <dimen name="icon_btn_size">32dp</dimen>
     <dimen name="main_text_size">18sp</dimen>
     <dimen name="margin_24">24dp</dimen>
     <dimen name="big_view_size">48dp</dimen>
+    <dimen name="half_margin">8dp</dimen>
 </resources>

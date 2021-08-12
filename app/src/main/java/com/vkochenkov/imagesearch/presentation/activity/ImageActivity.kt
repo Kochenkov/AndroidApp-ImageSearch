@@ -77,11 +77,9 @@ class ImageActivity : AppCompatActivity() {
     private fun initLiveDataObservers() {
         imageViewModel.isFavouriteImage.observe(this, Observer {
             if (it) {
-                likeBtn.background =
-                    AppCompatResources.getDrawable(this, R.drawable.ic_red_favorite_24)
+                likeBtn.setImageResource(R.drawable.ic_red_favorite_24)
             } else {
-                likeBtn.background =
-                    AppCompatResources.getDrawable(this, R.drawable.ic_baseline_favorite_border_24)
+                likeBtn.setImageResource(R.drawable.ic_baseline_favorite_border_24)
             }
         })
     }

@@ -45,50 +45,55 @@
 
     <ImageView
         android:id="@+id/image_info_btn"
-        android:layout_width="@dimen/icon_size"
-        android:layout_height="@dimen/icon_size"
+        android:layout_width="@dimen/icon_btn_size"
+        android:layout_height="@dimen/icon_btn_size"
         android:layout_margin="@dimen/main_margin"
-        android:background="@drawable/ic_baseline_info_24"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_baseline_info_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/image_share_btn"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/image_share_btn"
-        android:layout_width="@dimen/icon_size"
-        android:layout_height="@dimen/icon_size"
+        android:layout_width="@dimen/icon_btn_size"
+        android:layout_height="@dimen/icon_btn_size"
         android:layout_margin="@dimen/main_margin"
-        android:background="@drawable/ic_baseline_share_24"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_baseline_share_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/image_like_btn"
         app:layout_constraintStart_toEndOf="@id/image_info_btn" />
 
     <ImageView
         android:id="@+id/image_like_btn"
-        android:layout_width="@dimen/icon_size"
-        android:layout_height="@dimen/icon_size"
+        android:layout_width="@dimen/icon_btn_size"
+        android:layout_height="@dimen/icon_btn_size"
         android:layout_margin="@dimen/main_margin"
-        android:background="@drawable/ic_red_favorite_border_24"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_red_favorite_border_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/image_wallpaper_btn"
         app:layout_constraintStart_toEndOf="@id/image_share_btn" />
 
     <ImageView
         android:id="@+id/image_wallpaper_btn"
-        android:layout_width="@dimen/icon_size"
-        android:layout_height="@dimen/icon_size"
+        android:layout_width="@dimen/icon_btn_size"
+        android:layout_height="@dimen/icon_btn_size"
         android:layout_margin="@dimen/main_margin"
-        android:background="@drawable/ic_baseline_wallpaper_24"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_baseline_wallpaper_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/image_download_btn"
         app:layout_constraintStart_toEndOf="@id/image_like_btn" />
 
     <ImageView
         android:id="@+id/image_download_btn"
-        android:layout_width="@dimen/icon_size"
-        android:layout_height="@dimen/icon_size"
+        android:layout_width="@dimen/icon_btn_size"
+        android:layout_height="@dimen/icon_btn_size"
         android:layout_margin="@dimen/main_margin"
-        android:background="@drawable/ic_baseline_download_24"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_baseline_download_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/image_wallpaper_btn" />
