@@ -119,23 +119,9 @@ class ImageActivity : AppCompatActivity() {
     }
 
     private fun downloadImageToThePicturesGallery() {
-        //check permission
-        if (ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            val permissionArrays =
-                arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-                requestPermissions(permissionArrays, 1)
-            }
-        } else {
-            //todo do in background
-            //do download image
+        if (isPermissionGranted(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
             try {
-                if (BitmapStorage.bitmapImage!=null) {
+                if (BitmapStorage.bitmapImage != null) {
                     MediaStore.Images.Media.insertImage(
                         contentResolver,
                         BitmapStorage.bitmapImage,
@@ -148,6 +134,24 @@ class ImageActivity : AppCompatActivity() {
             } catch (e: Exception) {
                 showToast(R.string.downloading_error_str)
             }
+        }
+    }
+
+    private fun isPermissionGranted(permission: String): Boolean {
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                permission
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            val permissionArrays =
+                arrayOf(permission)
+
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+                requestPermissions(permissionArrays, 1)
+            }
+            return false
+        } else {
+            return true
         }
     }
 
