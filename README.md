@@ -1,4 +1,4 @@
-# Image Loader
+# Pictures Gallery
 
 ## Приложение по загрузке картинок
 
@@ -7,5 +7,7 @@
 Иконка приложения взята с сайта: https://www.flaticon.com/.
 
 Для получения списка картинок используется API Pyxabay: https://pixabay.com/api/docs/
+
+Ссылка на приложение в google play store: https://play.google.com/store/apps/details?id=com.vkochenkov.imagesearch
 
 © Created by Kochenkov Vladislav
