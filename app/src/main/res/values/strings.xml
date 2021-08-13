@@ -20,5 +20,5 @@
     <string name="downloading_error_str">Something went wrong: can\'t download image</string>
     <string name="downloading_success_str">Pictures has been saved</string>
     <string name="app_info_str">Welcome to this app! Here you can view hundreds of pictures, choose your own wallpaper, share it with friends and just enjoy beautiful arts.</string>
-    <string name="app_info_created_str">App created by Kochenkov ©. \nAll pictures provided by Pyxabay API. \nThis art from @sv_olya.</string>
+    <string name="app_info_created_str">App created by Kochenkov ©. \nAll pictures provided by Pyxabay API. \nThis art is from @sv_olya.</string>
 </resources>
