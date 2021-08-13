@@ -18,6 +18,8 @@ class FavouritesViewModel @Inject constructor(val repository: Repository) : View
     private val _favouritesList = MutableLiveData<List<ImageItem>>()
     val favouritesList: LiveData<List<ImageItem>> = _favouritesList
 
+    var firstFirstVisibleRecyclerPosition: Int? = null
+
     fun onResume() {
         getFavourites()
     }

@@ -62,6 +62,18 @@ class FavouritesFragment : Fragment() {
         favouritesViewModel.onResume()
     }
 
+    override fun onPause() {
+        super.onPause()
+        favouritesViewModel.firstFirstVisibleRecyclerPosition = (favouritesRecyclerView.layoutManager as GridLayoutManager).findFirstVisibleItemPosition()
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        if (favouritesViewModel.firstFirstVisibleRecyclerPosition != null) {
+            (favouritesRecyclerView.layoutManager as GridLayoutManager).scrollToPositionWithOffset(favouritesViewModel.firstFirstVisibleRecyclerPosition as Int,0)
+        }
+    }
+
     private fun initViews(view: View) {
         progressBar = view.findViewById(R.id.favourites_progress)
         emptyListTv = view.findViewById(R.id.favourites_empty_tv)

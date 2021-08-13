@@ -66,6 +66,18 @@ class ImagesFragment : Fragment() {
         return root
     }
 
+    override fun onPause() {
+        super.onPause()
+        imagesViewModel.firstFirstVisibleRecyclerPosition = (imagesRecyclerView.layoutManager as GridLayoutManager).findFirstVisibleItemPosition()
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        if (imagesViewModel.firstFirstVisibleRecyclerPosition != null) {
+            (imagesRecyclerView.layoutManager as GridLayoutManager).scrollToPositionWithOffset(imagesViewModel.firstFirstVisibleRecyclerPosition as Int,0)
+        }
+    }
+
     private fun setListeners() {
         swipeRefreshLayout.setOnRefreshListener {
             imagesViewModel.onSwipeRefresh()

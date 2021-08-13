@@ -26,6 +26,8 @@ class ImagesViewModel @Inject constructor(
     private val _itemsList = MutableLiveData<List<ImageItem>>()
     val itemsList: LiveData<List<ImageItem>> = _itemsList
 
+    var firstFirstVisibleRecyclerPosition: Int? = null
+
     fun onCreateView() {
         if (_itemsList.value == null) {
             PaggingStorage.currentPage = 1
