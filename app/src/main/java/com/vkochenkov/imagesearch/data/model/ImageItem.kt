@@ -13,6 +13,7 @@ data class ImageItem(
     val tags: String,
     val littleImageUrl: String,
     val mediumImageUrl: String,
-    val largeImageUrl: String
+    val largeImageUrl: String,
+    val userName: String
 ): Parcelable
 

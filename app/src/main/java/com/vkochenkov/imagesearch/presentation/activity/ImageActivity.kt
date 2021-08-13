@@ -10,7 +10,6 @@ import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -27,7 +26,6 @@ import com.vkochenkov.imagesearch.presentation.utils.ImageLoader
 import com.vkochenkov.imagesearch.presentation.view_model.ImageViewModel
 import com.vkochenkov.imagesearch.presentation.view_model.ViewModelFactory
 import javax.inject.Inject
-
 
 class ImageActivity : AppCompatActivity() {
 
@@ -104,6 +102,10 @@ class ImageActivity : AppCompatActivity() {
         infoBtn.setOnClickListener {
             it.startAnimation(animationWhenPressed)
             val infoBottomSheetDialog = InfoBottomSheetDialog()
+            if (BitmapStorage.bitmapImage!=null) {
+                infoBottomSheetDialog.imageSizeInfo = "${BitmapStorage.bitmapImage!!.width}*${BitmapStorage.bitmapImage!!.height}"
+            }
+            infoBottomSheetDialog.userName = item.userName
             infoBottomSheetDialog.show(supportFragmentManager, "InfoBottomSheetDialog")
         }
         shareBtn.setOnClickListener {

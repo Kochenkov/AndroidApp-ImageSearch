@@ -13,7 +13,8 @@ object Mapper {
                 hit.tags,
                 hit.previewUrl,
                 hit.webformatUrl,
-                hit.largeImageUrl
+                hit.largeImageUrl,
+                hit.user
             )
             imageItemsList.add(imageItem)
         }
